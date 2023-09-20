@@ -13,7 +13,7 @@ namespace ECommerce.Domain.Entities
         public required int Stock { get; set; }
         public required float Price { get; set; }
         public Guid CategoryId { get; set; }
-        public virtual required Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
         //public ICollection<Order> Orders { get; set; }
         //public ICollection<ProductImageFile>? ProductImageFiles { get; set; }
