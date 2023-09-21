@@ -1,0 +1,288 @@
+﻿@{
+    var controllerName = this.ViewContext.RouteData.Values["controller"].ToString().ToLower();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@ViewData["Title"]</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="~/sb-admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="~/sb-admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="~/sb-admin/css/admin-style.css" rel="stylesheet">
+
+    <!-- Bootstrap-toggle css-->
+    <link href="~/lib/bootstrap-toggle/css/bootstrap2-toggle.min.css" rel="stylesheet">
+
+    <!-- DataTables css-->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" asp-append-version="true">
+
+    <!-- Toaster css-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/lib/jquery-toast-plugin/jquery.toast.min.css">
+
+    @*<link rel="stylesheet" href="~/lib/Dropify/css/dropify.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/lib/Dropify/fonts/dropify.woff" asp-append-version="true">*@
+
+    <script src="https://kit.fontawesome.com/1cc93dc038.js" crossorigin="anonymous"></script>
+    @RenderSection("styles", required: false)
+
+</head>
+
+<body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-controller="dashboard" asp-action="index">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Aytac Hesenova</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item @(controllerName=="dashboard"? "active" : "")">
+                <a class="nav-link" asp-controller="dashboard" asp-action="index">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <h>Admin Paneli</h>
+                </a>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Səhifələr
+            </div>
+            <!-- Nav Item - Tables -->
+            <li class="nav-item @(controllerName=="report"? "active" : "")">
+                <a class="nav-link" asp-controller="report" asp-action="index">
+                    <i class="fa fa-bar-chart"></i>
+                    <span>Hesabatlar</span>
+                </a>
+            </li>
+    
+            <li class="nav-item @(controllerName=="customers"? "active" : "")">
+                <a class="nav-link" asp-controller="customers" asp-action="index">
+                    <i class="fas fa-users"></i>
+                    <span>Müştərilər</span>
+                </a>
+            </li>
+            <li class="nav-item @(controllerName=="companies"? "active" : "")">
+                <a class="nav-link" asp-controller="companies" asp-action="index">
+                    <i class="far fa-building"></i>
+                    <span>Şirkətlər</span>
+                </a>
+            </li>
+            <li class="nav-item @(controllerName=="questions"? "active" : "")">
+                <a class="nav-link" asp-controller="questions" asp-action="index">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Sorğular</span>
+                </a>
+            </li>
+            <li class="nav-item @(controllerName=="producttypes"? "active" : "")">
+                <a class="nav-link" asp-controller="ProductTypes" asp-action="index">
+                    <i class="fas fa-tag"></i>
+                    <span>Məhsul növləri</span>
+                </a>
+            </li>
+
+            <li class="nav-item @(controllerName=="faq"? "active" : "")">
+                <a class="nav-link" asp-controller="faq" asp-action="index">
+                    <i class="fas fa-fw fa-question"></i>
+                    <span>FAQ</span>
+                </a>
+            </li>
+            <li class="nav-item @(controllerName=="contacts"? "active" : "")">
+                <a class="nav-link" asp-controller="contacts" asp-action="index">
+                    <i class="fas fa-fw fa-phone"></i>
+                    <span>Kontakt</span>
+                </a>
+            </li>
+            <li class="nav-item @(controllerName=="pageslogos"? "active" : "")">
+                <a class="nav-link" asp-controller="pageslogos" asp-action="index">
+                    <i class="fas fa-fw fa-images"></i>
+                    <span>Səhifələrin Şəkilləri</span>
+                </a>
+            </li>
+            <li class="nav-item @(controllerName=="aboutus"? "active" : "")">
+                <a class="nav-link" asp-controller="aboutus" asp-action="index">
+                    <i class="fas fa-fw fa-info"></i>
+                    <span>Haqqımızda</span>
+                </a>
+            </li>
+            <li class="nav-item @(controllerName=="conditions"? "active" : "")">
+                <a class="nav-link" asp-controller="conditions" asp-action="index">
+                    <i class="fab fa-readme"></i>
+                    <span>Şərtlər və Qaydalar</span>
+                </a>
+            </li>
+            <li class="nav-item @(controllerName=="socialmedia"? "active" : "")">
+                <a class="nav-link" asp-controller="socialmedia" asp-action="index">
+                    <i class="fas fa-fw fa-icons"></i>
+                    <span>Sosial Mediya</span>
+                </a>
+            </li>
+            <li class="nav-item @(controllerName=="howitworks"? "active" : "")">
+                <a class="nav-link" asp-controller="howitworks" asp-action="index">
+                    <i class="fas fa-fw fa-question"></i>
+                    <span>Necə İşləyir?</span>
+                </a>
+            </li>
+            <li class="nav-item @(controllerName=="pagestexts"? "active" : "")">
+                <a class="nav-link" asp-controller="pagestexts" asp-action="index">
+                    <i class="fas fa-fw fa-pager"></i>
+                    <span>Səhifələr Mətinləri</span>
+                </a>
+            </li>
+            <li class="nav-item @(controllerName=="news"? "active" : "")">
+                <a class="nav-link" asp-controller="news" asp-action="index">
+                    <i class="fas fa-fw fa-newspaper"></i>
+                    <span>Xəbərlər</span>
+                </a>
+            </li>
+            <li class="nav-item @(controllerName=="sliders"? "active" : "")">
+                <a class="nav-link" asp-controller="sliders" asp-action="index">
+                    <i class="fas fa-fw fa-sliders-h"></i>
+                    <span>Sliderlər</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <ul class="navbar-nav ml-auto">
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                               
+                                <a class="dropdown-item" asp-controller="account" asp-action="logout" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Çıxış
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">@ViewData["Title"]</h1>
+                    </div>
+
+                    @RenderBody()
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span> @DateTime.Now.ToString("yyyy")</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Çıxmaq İstədyinizə Əminsinizmi?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Ləğv et</button>
+                    <a class="btn btn-primary" asp-controller="account" asp-action="logout">Çıxış</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="~/sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/sb-admin/js/sb-admin-2.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/sb-admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Sweet-Alert js-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <!-- Toaster js-->
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/jquery-toast-plugin/jquery.toast.min.js"></script>
+    <script src="~/lib/jquery.mask/jquery.mask.min.js"></script>
+    <script src="~/lib/js-cookie/js.cookie.min.js"></script>
+    <script src="~/lib/Dropify/js/dropify.js" asp-append-version="true"></script>
+    <script src="~/js/customer.js" asp-append-version="true"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

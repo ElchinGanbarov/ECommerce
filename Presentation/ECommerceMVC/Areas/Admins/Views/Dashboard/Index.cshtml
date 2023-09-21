@@ -1,0 +1,123 @@
+﻿@model DashboardViewModel
+@{
+    ViewData["Title"] = "Admin Paneli";
+}
+
+<div class="btn-group mb-2">
+</div>
+<div class="row">
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+
+                    <div class="col mr-2">
+                        <div class="font-weight-bold text-primary text-uppercase mb-1">Müştərilər</div><br>
+                        <div class="mb-0 font-weight-bold text-gray-800">Say : 1</div>
+                    </div>
+                    <div class="col-auto align-self-sm-start">
+                        <i class="fas fa-users text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="font-weight-bold text-success text-uppercase mb-1"><a asp-controller="raport" asp-action="orders">Sifarişlər</a>  </div><br />
+                        <div class="mb-0 font-weight-bold text-gray-800">Say : @Model.PackageCount</div>
+
+
+                        <div class="mb-0 font-weight-bold text-gray-800">
+                            Məbləğ : <br />
+                         
+                        </div>
+
+                    </div>
+                    <div class="col-auto align-self-sm-start">
+                        <i class="fas fa-shopping-basket fa-2x text-gray-300"></i>
+                    </div>
+                    <div class="col-auto align-self-sm-end">
+                        <a asp-controller="raport" asp-action="orders" class="btn btn-info">
+                            <i class="fas fa-plus-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+
+                    <div class="col mr-2">
+                        <div class="font-weight-bold text-primary text-uppercase mb-1">Balans</div><br>
+                        <div class="mb-0 font-weight-bold text-gray-800">Cari balans : @Model.PackageCount ‎₼</div>
+                        <div class="mb-0 font-weight-bold text-gray-800">İstifadə olunmuş balans : 1 ₼</div>
+                    </div>
+                    <div class="col-auto align-self-sm-start">
+                        <i class="fas fa-balance-scale text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6 offset-md-3  mt-5 text-center">
+        <canvas id="myChart" width="800" height="450"></canvas>
+    </div>
+</div>
+
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <partial name="~/areas/admins/views/shared/scripts/_dashboardscripts.cshtml" />
+    <script>
+        $("#filtertime").change(function () {
+            var value = $(this).val();
+            $.ajax({
+                url: "/admins/dashboard?filter=" + value,
+                success: function (res) {
+                    if (res) {
+                        $("body").html(res);
+                    }
+                }
+            });
+        });
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'pie',
+
+            // The data for our dataset
+            data: {
+                labels: ['Sifarişlər', 'Bağlamalar'],
+                datasets: [{
+                    backgroundColor: [
+                        '#FF6384',
+                        '#FFCE56'
+                    ],
+                    data: [@(Model.OrderCount), @(Model.PackageCount)]
+                }]
+            },
+
+            // Configuration options go here
+            options: {
+                title: {
+                    display: true,
+                    text: 'Ümumi bağlamalar və sifarişlər',
+                    size: '25'
+
+                }
+            }
+        });
+    </script>
+}
