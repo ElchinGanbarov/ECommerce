@@ -1,4 +1,5 @@
-﻿using ECommerce.Application.Repositories.Products;
+﻿using AutoMapper;
+using ECommerce.Application.Repositories.Products;
 using ECommerce.Domain.Entities;
 using MediatR;
 using System;
@@ -11,13 +12,19 @@ namespace ECommerce.Application.Features.Commands.Products.CreateProduct
 {
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest, CreateProductCommandResponse>
     {
+        private readonly IMapper _mapper;
         private readonly IProductWriteRepository _productWriteRepository;
-        public CreateProductCommandHandler(IProductWriteRepository productWriteRepository)
+
+        public CreateProductCommandHandler(IMapper mapper,
+                                           IProductWriteRepository productWriteRepository)
         {
-                _productWriteRepository = productWriteRepository;
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _productWriteRepository = productWriteRepository ?? throw new ArgumentNullException(nameof(productWriteRepository));
         }
+
         public async Task<CreateProductCommandResponse> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
+
             await _productWriteRepository.AddAsync(new Product
             {
                 Name = request.Name,
@@ -28,5 +35,8 @@ namespace ECommerce.Application.Features.Commands.Products.CreateProduct
             await _productWriteRepository.SaveAsync();
             return new();
         }
+
+
+        
     }
 }

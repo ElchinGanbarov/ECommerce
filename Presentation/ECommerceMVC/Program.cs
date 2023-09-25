@@ -1,5 +1,7 @@
 using ECommerce.Application;
 using ECommerce.Persistence;
+using Microsoft.Extensions.Logging;
+using NpgsqlTypes;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();//Client'tan gelen request neticvesinde oluþturulan HttpContext nesnesine katmanlardaki class'lar üzerinden(busineess logic) eriþebilmemizi saðlayan bir servistir.
 builder.Services.AddPersistenceServices();
 builder.Services.AddApplicationServices();
+
+
 
 var app = builder.Build();
 

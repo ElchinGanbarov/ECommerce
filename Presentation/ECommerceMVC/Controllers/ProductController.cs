@@ -11,7 +11,7 @@ namespace ECommerceMVC.Controllers
         readonly ILogger<ProductController> _logger;
 
         public ProductController(IMediator mediator,
-                                 ILogger<ProductController> logger)
+                                 ILogger<ProductController> logger )
         {
             _mediator = mediator;
             _logger = logger;
