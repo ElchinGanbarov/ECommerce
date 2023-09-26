@@ -1,8 +1,10 @@
-﻿namespace ECommerce.Application.Features.Queries.AppUser.GetAllUsers
+﻿using ECommerce.Application.DTOs.User;
+
+namespace ECommerce.Application.Features.Queries.AppUser.GetAllUsers
 {
     public class GetAllUsersQueryResponse
     {
-        public object Users { get; set; }
+        public List<ListUser> Users { get; set; }
         public int TotalUsersCount { get; set; }
     }
 }

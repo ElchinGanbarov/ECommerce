@@ -4,14 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerceMVC.Controllers
 {
-    public class ProductController : Controller
+    public class ProductsController : Controller
     {
 
         readonly IMediator _mediator;
-        readonly ILogger<ProductController> _logger;
+        readonly ILogger<ProductsController> _logger;
 
-        public ProductController(IMediator mediator,
-                                 ILogger<ProductController> logger )
+        public ProductsController(IMediator mediator,
+                                 ILogger<ProductsController> logger )
         {
             _mediator = mediator;
             _logger = logger;

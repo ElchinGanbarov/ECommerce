@@ -9,7 +9,7 @@ namespace ECommerce.Domain.Entities
 {
     public class Menu : BaseEntity
     {
-        public required string Name { get; set; }
+        public  string Name { get; set; }
 
         public virtual ICollection<Endpoint>? Endpoints { get; set; }
     }

@@ -9,9 +9,9 @@ namespace ECommerce.Domain.Entities
 {
     public class Product : BaseEntity
     {
-        public required string Name { get; set; }
-        public required int Stock { get; set; }
-        public required float Price { get; set; }
+        public  string Name { get; set; }
+        public  int Stock { get; set; }
+        public  float Price { get; set; }
         public Guid CategoryId { get; set; }
         public virtual Category Category { get; set; }
 

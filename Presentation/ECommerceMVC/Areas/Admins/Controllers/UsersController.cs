@@ -12,16 +12,22 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerceMVC.Areas.Admins.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class UserController : ControllerBase
+    [Area("Admins")]
+    [Route("admins/[controller]")]
+    public class UsersController : Controller
     {
         readonly IMediator _mediator;
         readonly IMailService _mailService;
-        public UserController(IMediator mediator, IMailService mailService)
+        public UsersController(IMediator mediator, IMailService mailService)
         {
             _mediator = mediator;
             _mailService = mailService;
+        }
+
+        [HttpGet("CreateUser")]
+        public  IActionResult CreateUser()
+        {
+            return View();
         }
 
         [HttpPost]
@@ -39,17 +45,17 @@ namespace ECommerceMVC.Areas.Admins.Controllers
         }
 
         [HttpGet]
-        [Authorize(AuthenticationSchemes = "Admin")]
-        [AuthorizeDefinition(ActionType = ActionType.Reading, Definition = "Get All Users", Menu = "Users")]
-        public async Task<IActionResult> GetAllUsers([FromQuery] GetAllUsersQueryRequest getAllUsersQueryRequest)
+        //[Authorize(AuthenticationSchemes = "Admin")]
+        //[AuthorizeDefinition(ActionType = ActionType.Reading, Definition = "Get All Users", Menu = "Users")]
+        public async Task<IActionResult> Index([FromQuery] GetAllUsersQueryRequest getAllUsersQueryRequest)
         {
             GetAllUsersQueryResponse response = await _mediator.Send(getAllUsersQueryRequest);
-            return Ok(response);
+            return View(response);
         }
 
         [HttpGet("get-roles-to-user/{UserId}")]
-        [Authorize(AuthenticationSchemes = "Admin")]
-        [AuthorizeDefinition(ActionType = ActionType.Reading, Definition = "Get Roles To Users", Menu = "Users")]
+        //[Authorize(AuthenticationSchemes = "Admin")]
+        //[AuthorizeDefinition(ActionType = ActionType.Reading, Definition = "Get Roles To Users", Menu = "Users")]
         public async Task<IActionResult> GetRolesToUser([FromRoute] GetRolesToUserQueryRequest getRolesToUserQueryRequest)
         {
             GetRolesToUserQueryResponse response = await _mediator.Send(getRolesToUserQueryRequest);
@@ -57,8 +63,8 @@ namespace ECommerceMVC.Areas.Admins.Controllers
         }
 
         [HttpPost("assign-role-to-user")]
-        [Authorize(AuthenticationSchemes = "Admin")]
-        [AuthorizeDefinition(ActionType = ActionType.Reading, Definition = "Assign Role To User", Menu = "Users")]
+        //[Authorize(AuthenticationSchemes = "Admin")]
+        //[AuthorizeDefinition(ActionType = ActionType.Reading, Definition = "Assign Role To User", Menu = "Users")]
         public async Task<IActionResult> AssignRoleToUser(AssignRoleToUserCommandRequest assignRoleToUserCommandRequest)
         {
             AssignRoleToUserCommandResponse response = await _mediator.Send(assignRoleToUserCommandRequest);

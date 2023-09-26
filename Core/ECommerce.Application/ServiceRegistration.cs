@@ -17,7 +17,6 @@ namespace ECommerce.Application
             collection.AddMediatR(typeof(ServiceRegistration));
             // Configure AutoMapper
             collection.AddAutoMapper(typeof(ServiceRegistration));
-
         }
     }
 }

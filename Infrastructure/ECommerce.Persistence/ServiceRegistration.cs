@@ -1,7 +1,12 @@
-﻿using ECommerce.Application.Repositories.Products;
+﻿using ECommerce.Application.Abstractions.Services.Authentications;
+using ECommerce.Application.Abstractions.Services;
+using ECommerce.Application.Repositories.Endpoints;
+using ECommerce.Application.Repositories.Products;
 using ECommerce.Domain.Entities.Identity;
 using ECommerce.Persistence.Contexts;
+using ECommerce.Persistence.Repositories.Endpoints;
 using ECommerce.Persistence.Repositories.Products;
+using ECommerce.Persistence.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,7 +35,16 @@ namespace ECommerce.Persistence
 
             services.AddScoped<IProductReadRepository, ProductReadRepository>();
             services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
-        }
-    }
 
+            services.AddScoped<IEndpointReadRepository, EndpointReadRepository>();
+            services.AddScoped<IEndpointWriteRepository, EndpointWriteRepository>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<IExternalAuthentication, AuthService>();
+            services.AddTransient<IInternalAuthentication, AuthService>();
+
+
+        }
+
+    }
 }

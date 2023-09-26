@@ -10,7 +10,7 @@ namespace ECommerce.Domain.Entities
 {
     public class Basket : BaseEntity
     {
-        public required string UserId { get; set; }
+        public  string UserId { get; set; }
 
         public virtual  AppUser? User { get; set; }
        // public Order Order { get; set; }

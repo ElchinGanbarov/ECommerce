@@ -129,9 +129,9 @@
                 </a>
             </li>
             <li class="nav-item @(controllerName=="conditions"? "active" : "")">
-                <a class="nav-link" asp-controller="conditions" asp-action="index">
+                <a class="nav-link" asp-controller="users" asp-action="Index" asp-route-page="1" asp-route-size="10">
                     <i class="fab fa-readme"></i>
-                    <span>Şərtlər və Qaydalar</span>
+                    <span>Istifadeciler</span>
                 </a>
             </li>
             <li class="nav-item @(controllerName=="socialmedia"? "active" : "")">
@@ -280,7 +280,6 @@
     <script src="~/lib/jquery.mask/jquery.mask.min.js"></script>
     <script src="~/lib/js-cookie/js.cookie.min.js"></script>
     <script src="~/lib/Dropify/js/dropify.js" asp-append-version="true"></script>
-    <script src="~/js/customer.js" asp-append-version="true"></script>
 
     @RenderSection("scripts", required: false)
 </body>
