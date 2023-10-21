@@ -7,6 +7,7 @@ using ECommerce.Domain.Entities;
 using ECommerce.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ECommerce.Persistence.Services
 {

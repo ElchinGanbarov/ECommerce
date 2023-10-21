@@ -1,7 +1,6 @@
 ﻿@model ECommerce.Application.Features.Commands.AppUser.LoginUser.LoginUserCommandRequest
-@{
-    Layout = null;
-}
+
+
 
 <section class="vh-100">
     <div class="container py-5 h-100">
@@ -11,11 +10,11 @@
                      class="img-fluid" alt="Phone image">
             </div>
             <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                <form>
+                <form method="post">
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                        <label asp-for="UsernameOrEmail" class="form-label">Email address or User name</label>
-                        <input asp-for="UsernameOrEmail" id="form2Example1" class="form-control form-control-lg" placeholder="Email address or username">
+                        <label asp-for="UsernameOrEmail" class="form-label">Email address</label>
+                        <input asp-for="UsernameOrEmail" id="form2Example1" class="form-control form-control-lg" placeholder="email or username">
                         <span style="color:red" asp-validation-for="UsernameOrEmail"></span>
                     </div>
 
@@ -45,7 +44,7 @@
                         <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
                     </div>
                     <div class="text-center">
-                        <a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998" href="#!"
+                        <a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998" asp-action="ExternalLogin"
                            role="button">
                             <i class="fab fa-google"></i>
                             Continue with Google

@@ -72,48 +72,11 @@
                 Səhifələr
             </div>
             <!-- Nav Item - Tables -->
-            <li class="nav-item @(controllerName=="report"? "active" : "")">
-                <a class="nav-link" asp-controller="report" asp-action="index">
-                    <i class="fa fa-bar-chart"></i>
-                    <span>Hesabatlar</span>
-                </a>
-            </li>
     
-            <li class="nav-item @(controllerName=="customers"? "active" : "")">
-                <a class="nav-link" asp-controller="customers" asp-action="index">
-                    <i class="fas fa-users"></i>
-                    <span>Müştərilər</span>
-                </a>
-            </li>
-            <li class="nav-item @(controllerName=="companies"? "active" : "")">
-                <a class="nav-link" asp-controller="companies" asp-action="index">
-                    <i class="far fa-building"></i>
-                    <span>Şirkətlər</span>
-                </a>
-            </li>
-            <li class="nav-item @(controllerName=="questions"? "active" : "")">
-                <a class="nav-link" asp-controller="questions" asp-action="index">
-                    <i class="fas fa-question-circle"></i>
-                    <span>Sorğular</span>
-                </a>
-            </li>
-            <li class="nav-item @(controllerName=="producttypes"? "active" : "")">
-                <a class="nav-link" asp-controller="ProductTypes" asp-action="index">
-                    <i class="fas fa-tag"></i>
-                    <span>Məhsul növləri</span>
-                </a>
-            </li>
-
             <li class="nav-item @(controllerName=="faq"? "active" : "")">
                 <a class="nav-link" asp-controller="faq" asp-action="index">
                     <i class="fas fa-fw fa-question"></i>
                     <span>FAQ</span>
-                </a>
-            </li>
-            <li class="nav-item @(controllerName=="contacts"? "active" : "")">
-                <a class="nav-link" asp-controller="contacts" asp-action="index">
-                    <i class="fas fa-fw fa-phone"></i>
-                    <span>Kontakt</span>
                 </a>
             </li>
             <li class="nav-item @(controllerName=="pageslogos"? "active" : "")">
@@ -129,15 +92,9 @@
                 </a>
             </li>
             <li class="nav-item @(controllerName=="conditions"? "active" : "")">
-                <a class="nav-link" asp-controller="users" asp-action="Index" asp-route-page="1" asp-route-size="10">
+                <a class="nav-link" asp-controller="account" asp-action="Index" asp-route-page="0" asp-route-size="10">
                     <i class="fab fa-readme"></i>
                     <span>Istifadeciler</span>
-                </a>
-            </li>
-            <li class="nav-item @(controllerName=="socialmedia"? "active" : "")">
-                <a class="nav-link" asp-controller="socialmedia" asp-action="index">
-                    <i class="fas fa-fw fa-icons"></i>
-                    <span>Sosial Mediya</span>
                 </a>
             </li>
             <li class="nav-item @(controllerName=="howitworks"? "active" : "")">

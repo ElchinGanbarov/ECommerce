@@ -1,0 +1,28 @@
+﻿@model ECommerce.Application.Features.Queries.AppUser.GetAllUsers.GetAllUsersQueryResponse
+@{
+    ViewData["Title"] = "Admin Paneli";
+}
+
+<a class="btn btn-primary" asp-controller="account" asp-action="createuser">
+    Istifadeci yarat
+</a>
+<h1>Umumi userlerin sayi @Model.TotalUsersCount</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Ad</th>
+            <th scope="col">Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (var i = 0; i < Model.Users.Count; i++)
+        {
+            <tr>
+                <th scope="row">@(i + 1)</th>
+                <td>@Model.Users[i].NameSurname</td>
+                <td>@Model.Users[i].Email</td>
+            </tr>
+        }
+    </tbody>
+</table>

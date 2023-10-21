@@ -22,7 +22,7 @@ namespace ECommerce.Persistence
     {
         public static void AddPersistenceServices(this IServiceCollection services)
         {
-            services.AddDbContext<ECommerceDbContext>(options => options.UseNpgsql(Configuration.ConnectionString).UseLazyLoadingProxies());
+            services.AddDbContext<ECommerceDbContext>(options => options.UseNpgsql(Configuration.ConnectionString));
             services.AddIdentity<AppUser, AppRole>(options =>
             {
                 options.Password.RequiredLength = 3;
@@ -30,8 +30,10 @@ namespace ECommerce.Persistence
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
+                
             }).AddEntityFrameworkStores<ECommerceDbContext>()
             .AddDefaultTokenProviders();
+
 
             services.AddScoped<IProductReadRepository, ProductReadRepository>();
             services.AddScoped<IProductWriteRepository, ProductWriteRepository>();

@@ -3,6 +3,7 @@ using ECommerce.Application.Abstractions.Token;
 using ECommerce.Application.DTOs;
 using ECommerce.Application.DTOs.Facebook;
 using ECommerce.Application.Exceptions;
+using ECommerce.Application.Features.Commands.AppUser.LoginUser;
 using ECommerce.Application.Helpers;
 using ECommerce.Domain.Entities.Identity;
 using Google.Apis.Auth;
@@ -100,19 +101,13 @@ namespace ECommerce.Persistence.Services
             }
             throw new Exception("Invalid external authentication.");
         }
-        public async Task<Token> GoogleLoginAsync(string idToken, int accessTokenLifeTime)
+        public async Task<Token> GoogleLoginAsync(string email, string name, string IdToken)
         {
-            var settings = new GoogleJsonWebSignature.ValidationSettings()
-            {
-                Audience = new List<string> { _configuration["ExternalLoginSettings:Google:Client_ID"] }
-            };
+            var info = new UserLoginInfo("GOOGLE", IdToken, "GOOGLE");
 
-            var payload = await GoogleJsonWebSignature.ValidateAsync(idToken, settings);
+            Domain.Entities.Identity.AppUser user = await _userManager.FindByEmailAsync(email);
 
-            var info = new UserLoginInfo("GOOGLE", payload.Subject, "GOOGLE");
-            Domain.Entities.Identity.AppUser user = await _userManager.FindByLoginAsync(info.LoginProvider, info.ProviderKey);
-
-            return await CreateUserExternalAsync(user, payload.Email, payload.Name, info, accessTokenLifeTime);
+            return await CreateUserExternalAsync(user, email, name, info, 50);
         }
 
         public async Task<Token> LoginAsync(string usernameOrEmail, string password, int accessTokenLifeTime)
@@ -120,7 +115,7 @@ namespace ECommerce.Persistence.Services
             Domain.Entities.Identity.AppUser user = await _userManager.FindByNameAsync(usernameOrEmail);
             if (user == null)
                 user = await _userManager.FindByEmailAsync(usernameOrEmail);
-
+            
             if (user == null)
                 throw new NotFoundUserException();
 
@@ -129,6 +124,9 @@ namespace ECommerce.Persistence.Services
             {
                 Token token = _tokenHandler.CreateAccessToken(accessTokenLifeTime, user);
                 await _userService.UpdateRefreshTokenAsync(token.RefreshToken, user, token.Expiration, 15);
+                await _signInManager.PasswordSignInAsync(usernameOrEmail, password, false, lockoutOnFailure: false);
+
+
                 return token;
             }
             throw new AuthenticationErrorException();

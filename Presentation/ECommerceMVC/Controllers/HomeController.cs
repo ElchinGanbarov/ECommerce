@@ -1,4 +1,5 @@
 ﻿using ECommerceMVC.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -15,9 +16,12 @@ namespace ECommerceMVC.Controllers
 
         public IActionResult Index()
         {
+            var isAdmins = HttpContext.User.Identity.Name;
+
+            var isAdmin = HttpContext.User.IsInRole("Admin");
             return View();
         }
-
+        [Authorize]
         public IActionResult Privacy()
         {
             return View();
