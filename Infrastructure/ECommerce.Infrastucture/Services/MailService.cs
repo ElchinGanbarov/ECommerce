@@ -7,16 +7,22 @@ using System.Net.Mail;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using System.Web;
+using ECommerce.Application.Helpers;
 
 namespace ECommerce.Infrastucture.Services
 {
     public class MailService : IMailService
     {
         private readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public MailService(IConfiguration configuration)
+        public MailService(IConfiguration configuration,
+                           IHttpContextAccessor httpContextAccessor)
         {
             _configuration = configuration;
+            _httpContextAccessor = httpContextAccessor;
         }
         public async Task SendMailAsync(string to, string subject, string body, bool isBodyHtml = true)
         {
@@ -33,27 +39,39 @@ namespace ECommerce.Infrastucture.Services
             mail.Body = body;
             mail.From = new(_configuration["Mail:Username"], "DG Product", System.Text.Encoding.UTF8);
 
-            SmtpClient smtp = new();
-            smtp.Credentials = new NetworkCredential(_configuration["Mail:Username"], _configuration["Mail:Password"]);
-            smtp.Port = 587;
-            smtp.EnableSsl = true;
-            smtp.Host = _configuration["Mail:Host"];
-            await smtp.SendMailAsync(mail);
+            try
+            {
+                SmtpClient smtp = new("smtp.gmail.com", 587);
+                smtp.Credentials = new NetworkCredential(_configuration["Mail:Username"], _configuration["Mail:Password"]);
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+
+                await smtp.SendMailAsync(mail);
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+
+
         }
 
         public async Task SendPasswordResetMailAsync(string to, string userId, string resetToken)
         {
-            StringBuilder mail = new();
-            mail.AppendLine("Hello<br>If you have requested a new password, you can renew your password from the link below.<br><strong><a target=\"_blank\" href=\"");
-            mail.AppendLine(_configuration["AngularClientUrl"]);
-            mail.AppendLine("/update-password/");
-            mail.AppendLine(userId);
-            mail.AppendLine("/");
-            mail.AppendLine(resetToken);
+            var request = _httpContextAccessor.HttpContext.Request;
+            string baseUrl = $"{request.Scheme}://{request.Host.Value}";
+
+            string resetUrl = $"{baseUrl}/auth/updatepassword/{userId}";
+
+            StringBuilder mail = new StringBuilder();
+            mail.AppendLine("Hello,<br>If you have requested a new password, you can renew your password from the link below.<br><strong><a target=\"_blank\" href=\"");
+            mail.AppendLine(resetUrl);
             mail.AppendLine("\">Click to request a new password...</a></strong><br><br><span style=\"font-size:12px;\">NOTE: If this request has not been fulfilled by you, please do not take this e-mail seriously.</span><br>Saygılarımızla...<br><br><br>NG - Mini|E-Ticaret");
 
             await SendMailAsync(to, "Password Reset Request", mail.ToString());
         }
+
 
         public async Task SendCompletedOrderMailAsync(string to, string orderCode, DateTime orderDate, string userName)
         {

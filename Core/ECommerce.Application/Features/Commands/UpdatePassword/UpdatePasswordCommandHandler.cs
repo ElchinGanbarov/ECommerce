@@ -18,7 +18,7 @@ namespace ECommerce.Application.Features.Commands.UpdatePassword
             if (!request.Password.Equals(request.PasswordConfirm))
                 throw new PasswordChangeFailedException("Lütfen şifreyi birebir doğrulayınız.");
 
-            await _userService.UpdatePasswordAsync(request.UserId, request.ResetToken, request.Password);
+            await _userService.UpdatePasswordAsync(request.UserId, request.Password);
             return new();
         }
     }

@@ -72,7 +72,7 @@ namespace ECommerce.Persistence.Services
             {
                 await _userManager.AddLoginAsync(user, info); //AspNetUserLogins
 
-                Token token = _tokenHandler.CreateAccessToken(accessTokenLifeTime, user);
+                Token token = _tokenHandler.CreateAccessToken(DateTime.UtcNow.AddDays(accessTokenLifeTime), user);
                 await _userService.UpdateRefreshTokenAsync(token.RefreshToken, user, token.Expiration, 15);
                 return token;
             }
@@ -110,7 +110,7 @@ namespace ECommerce.Persistence.Services
             return await CreateUserExternalAsync(user, email, name, info, 50);
         }
 
-        public async Task<Token> LoginAsync(string usernameOrEmail, string password, int accessTokenLifeTime)
+        public async Task<Token> LoginAsync(string usernameOrEmail, string password, DateTime exparitonDateTime)
         {
             Domain.Entities.Identity.AppUser user = await _userManager.FindByNameAsync(usernameOrEmail);
             if (user == null)
@@ -122,7 +122,7 @@ namespace ECommerce.Persistence.Services
             SignInResult result = await _signInManager.CheckPasswordSignInAsync(user, password, false);
             if (result.Succeeded) //Authentication başarılı!
             {
-                Token token = _tokenHandler.CreateAccessToken(accessTokenLifeTime, user);
+                Token token = _tokenHandler.CreateAccessToken(exparitonDateTime, user);
                 await _userService.UpdateRefreshTokenAsync(token.RefreshToken, user, token.Expiration, 15);
                 await _signInManager.PasswordSignInAsync(usernameOrEmail, password, false, lockoutOnFailure: false);
 
@@ -137,7 +137,7 @@ namespace ECommerce.Persistence.Services
             AppUser? user = await _userManager.Users.FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
             if (user != null && user?.RefreshTokenEndDate > DateTime.UtcNow)
             {
-                Token token = _tokenHandler.CreateAccessToken(15, user);
+                Token token = _tokenHandler.CreateAccessToken(DateTime.Now.AddDays(30), user);
                 await _userService.UpdateRefreshTokenAsync(token.RefreshToken, user, token.Expiration, 300);
                 return token;
             }

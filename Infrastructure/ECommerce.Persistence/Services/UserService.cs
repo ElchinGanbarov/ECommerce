@@ -54,12 +54,13 @@ namespace ECommerce.Persistence.Services
             else
                 throw new NotFoundUserException();
         }
-        public async Task UpdatePasswordAsync(string userId, string resetToken, string newPassword)
+        public async Task UpdatePasswordAsync(string userId, string newPassword)
         {
             AppUser user = await _userManager.FindByIdAsync(userId);
             if (user != null)
             {
-                resetToken = resetToken.UrlDecode();
+                string resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+
                 IdentityResult result = await _userManager.ResetPasswordAsync(user, resetToken, newPassword);
                 if (result.Succeeded)
                     await _userManager.UpdateSecurityStampAsync(user);
@@ -156,5 +157,13 @@ namespace ECommerce.Persistence.Services
 
             return false;
         }
-    }
+
+		public async Task<bool> GetUserById(string userId)
+		{
+			AppUser user = await _userManager.FindByIdAsync(userId);
+
+            return user != null && user.Id != userId;
+
+		}
+	}
 }

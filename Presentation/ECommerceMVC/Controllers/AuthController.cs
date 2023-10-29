@@ -17,17 +17,20 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 using ECommerce.Application.Features.Commands.AppUser.GoogleLogin;
+using ECommerce.Application.Features.Commands.AppUser.PasswordReset;
+using ECommerce.Application.Features.Commands.AppUser.RefreshTokenLogin;
+using ECommerce.Application.Features.Queries.AppUser.GetUserById;
 
 namespace ECommerceMVC.Controllers
 {
-    public class AccountController : Controller
+    public class AuthController : Controller
     {
         readonly IMediator _mediator;
         readonly IMailService _mailService;
 
         private readonly SignInManager<ECommerce.Domain.Entities.Identity.AppUser> _signInManager;
 
-        public AccountController(IMediator mediator,
+        public AuthController(IMediator mediator,
                                IMailService mailService,
                                SignInManager<ECommerce.Domain.Entities.Identity.AppUser> signInManager)
         {
@@ -41,11 +44,20 @@ namespace ECommerceMVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginUserCommandRequest loginUserCommandRequest)
         {
+            if (!ModelState.IsValid) return View();
             await _mediator.Send(loginUserCommandRequest);
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(PasswordResetCommandRequest passwordResetCommandRequest)
+        {
+            PasswordResetCommandResponse response = await _mediator.Send(passwordResetCommandRequest);
+            return Ok(response);
         }
         [HttpGet]
         public IActionResult ExternalLogin(string returnUrl = "/")
@@ -88,10 +100,6 @@ namespace ECommerceMVC.Controllers
             HttpContext.Session.Remove("GoogleLoginNonce");
 
             // Successful login; you can access the user's information here
-            var userEmail = result.Principal.FindFirst(ClaimTypes.Email)?.Value;
-            var userName = result.Principal.FindFirst(ClaimTypes.Name)?.Value;
-
-
 
             GoogleLoginCommandRequest googleLoginCommandRequest = new GoogleLoginCommandRequest
             {
@@ -102,7 +110,7 @@ namespace ECommerceMVC.Controllers
                 Provider = "Google",
                 IdToken = result.Principal.FindFirst(ClaimTypes.NameIdentifier).Value
 
-        };
+            };
             GoogleLoginCommandResponse response = await _mediator.Send(googleLoginCommandRequest);
 
             // Add your logic for user registration or any other operations here
@@ -130,8 +138,19 @@ namespace ECommerceMVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        [HttpGet("auth/updatepassword/{userId}")]
+        public async Task<IActionResult> UpdatePassword([FromRoute] string userId)
+        {
+			GetUserByIdQueryRequest getUserByIdQueryRequest = new GetUserByIdQueryRequest { UserId = userId };
+			GetUserByIdQueryResponse getUserByIdQueryHandler = await _mediator.Send(getUserByIdQueryRequest);
+            if(!getUserByIdQueryHandler.Result) { return NotFound("User not Found"); }
+            return View();
+        }
+
+
         [HttpPost("update-password")]
-        public async Task<IActionResult> UpdatePassword([FromBody] UpdatePasswordCommandRequest updatePasswordCommandRequest)
+        public async Task<IActionResult> UpdatePassword([FromForm] UpdatePasswordCommandRequest updatePasswordCommandRequest)
         {
             UpdatePasswordCommandResponse response = await _mediator.Send(updatePasswordCommandRequest);
             return Ok(response);

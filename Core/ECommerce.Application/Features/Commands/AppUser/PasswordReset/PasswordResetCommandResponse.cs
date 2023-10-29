@@ -2,5 +2,6 @@
 {
     public class PasswordResetCommandResponse
     {
+        public string Url { get; set; }
     }
 }

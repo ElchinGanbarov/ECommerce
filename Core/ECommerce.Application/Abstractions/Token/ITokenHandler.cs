@@ -4,7 +4,7 @@ namespace ECommerce.Application.Abstractions.Token
 {
     public interface ITokenHandler
     {
-        DTOs.Token CreateAccessToken(int second, AppUser appUser);
+        DTOs.Token CreateAccessToken(DateTime exparitionDateTime, AppUser appUser);
         string CreateRefreshToken();
     }
 }
