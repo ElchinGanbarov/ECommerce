@@ -15,7 +15,7 @@ namespace ECommerce.Application.Features.Commands.AppUser.PasswordReset
         public async Task<PasswordResetCommandResponse> Handle(PasswordResetCommandRequest request, CancellationToken cancellationToken)
         {
             await _authService.PasswordResetAsnyc(request.Email);
-            return new ();
+            return new PasswordResetCommandResponse { Url = "/auth/login" };
         }
     }
 }

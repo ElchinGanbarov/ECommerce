@@ -162,7 +162,7 @@ namespace ECommerce.Persistence.Services
 		{
 			AppUser user = await _userManager.FindByIdAsync(userId);
 
-            return user != null && user.Id != userId;
+            return user != null && user.Id == userId;
 
 		}
 	}

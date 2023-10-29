@@ -117,6 +117,9 @@ app.UseStatusCodePages(async context =>
     }
 });
 
+app.UseMiddleware<ExceptionHandlerMiddleware>();
+
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

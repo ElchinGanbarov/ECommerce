@@ -114,7 +114,7 @@
                     method: "POST",
                     data: requestData,
                     success: function (res) {
-                        document.location.href = "/auth/login";
+                        document.location.href = res.url;
                     },
                     error: function (xhr, status, error) {
                         console.log("Error: " + error);
