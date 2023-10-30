@@ -1,16 +1,17 @@
 ﻿using ECommerce.Application.Abstractions.Services;
+using static Google.Apis.Requests.BatchRequest;
 
 namespace ECommerceMVC.Filters
 {
 	public class ExceptionHandlerMiddleware
 	{
 		private readonly RequestDelegate next;
-		private readonly IMailService _mailService;
+		private readonly ILogger<ExceptionHandlerMiddleware> logger;
 		public ExceptionHandlerMiddleware(RequestDelegate Next,
-			                              IMailService mailService)
+			                              ILogger<ExceptionHandlerMiddleware> Logger)
 		{
 			next = Next;
-			_mailService = mailService;
+			logger = Logger;
 		}
 		public async Task Invoke(HttpContext httpContext)
 		{
@@ -20,8 +21,22 @@ namespace ECommerceMVC.Filters
 			}
 			catch (Exception e)
 			{
-				await _mailService.SendMailAsync("ganbarovelcin@gmail.com", "Exception error", e.Message);
-			}
+
+
+                httpContext.Response.Cookies.Append("toast", $"danger|{e.Message}", new Microsoft.AspNetCore.Http.CookieOptions
+				{
+					HttpOnly = false,
+					Expires = DateTime.Now.AddDays(1)
+				});
+
+
+
+				string actionName = httpContext.Request.Path;
+				logger.LogError($"{actionName} --- {e.Message}");
+
+				httpContext.Response.Redirect("/");
+
+            }
 		}
 	}
 }
