@@ -10,18 +10,18 @@
                      class="img-fluid" alt="Phone image">
             </div>
             <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                <form class="form" method="post" id="login-form">
+                <form class="form" method="post" id="login-form" asp-action="Login">
                     <!-- Email input -->
                     <div class="form-outline mb-4">
                         <label asp-for="UsernameOrEmail" class="form-label">Email address</label>
-                        <input asp-for="UsernameOrEmail" id="form2Example1" class="form-control form-control-lg" placeholder="email or username">
+                        <input asp-for="UsernameOrEmail" id="form2Example1" class="form-control form-control-lg" required placeholder="email or username">
                         <span style="color:red" asp-validation-for="UsernameOrEmail"></span>
                     </div>
 
                     <!-- Password input -->
                     <div class="form-outline mb-4">
                         <label asp-for="Password" class="control-label">Password</label>
-                        <input asp-for="Password" class="form-control form-control-lgl" type="password" placeholder="******">
+                        <input asp-for="Password" class="form-control form-control-lgl" type="password" required placeholder="******">
                         <span style="color:red" asp-validation-for="Password"></span>
                     </div>
 
@@ -74,7 +74,7 @@
                 </p>
                 <div class="form-outline">
                     <label class="form-label" for="typeEmail" >Email input</label>
-                    <input type="email" id="typeEmail" class="form-control my-3" />
+                    <input type="email" id="typeEmail" required class="form-control my-3" />
                 </div>
                 <a id="typeEmailbutton"  class="btn btn-primary w-100">Send Email</a>
             </div>

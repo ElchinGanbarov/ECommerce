@@ -129,7 +129,6 @@ namespace ECommerceMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
         public async Task<IActionResult> CreateUser(CreateUserCommandRequest createUserCommandRequest)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -145,15 +144,19 @@ namespace ECommerceMVC.Controllers
 			GetUserByIdQueryRequest getUserByIdQueryRequest = new GetUserByIdQueryRequest { UserId = userId };
 			GetUserByIdQueryResponse getUserByIdQueryHandler = await _mediator.Send(getUserByIdQueryRequest);
             if(!getUserByIdQueryHandler.Result) { return NotFound("User not Found"); }
-            return View();
+
+            UpdatePasswordCommandRequest updatePasswordCommandRequest = new UpdatePasswordCommandRequest { UserId = userId };
+
+            return View(updatePasswordCommandRequest);
         }
 
-
-        [HttpPost("update-password")]
-        public async Task<IActionResult> UpdatePassword([FromForm] UpdatePasswordCommandRequest updatePasswordCommandRequest)
+        [HttpPost]
+        public async Task<IActionResult> UpdatePassword(UpdatePasswordCommandRequest updatePasswordCommandRequest)
         {
+			if (!ModelState.IsValid) { return BadRequest(ModelState); }
             UpdatePasswordCommandResponse response = await _mediator.Send(updatePasswordCommandRequest);
-            return Ok(response);
+            if(response is null) return BadRequest(ModelState);
+            return View(nameof(Login));
         }
 
         [HttpGet]
