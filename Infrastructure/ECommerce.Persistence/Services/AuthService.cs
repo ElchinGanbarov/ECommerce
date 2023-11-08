@@ -117,7 +117,7 @@ namespace ECommerce.Persistence.Services
                 user = await _userManager.FindByEmailAsync(usernameOrEmail);
             
             if (user == null)
-                throw new NotFoundUserException();
+                return null;
 
             SignInResult result = await _signInManager.CheckPasswordSignInAsync(user, password, false);
             if (result.Succeeded) //Authentication başarılı!
@@ -129,7 +129,7 @@ namespace ECommerce.Persistence.Services
 
                 return token;
             }
-            throw new AuthenticationErrorException();
+            return null;
         }
 
         public async Task<Token> RefreshTokenLoginAsync(string refreshToken)

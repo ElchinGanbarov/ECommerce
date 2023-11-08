@@ -29,10 +29,8 @@ namespace ECommerceMVC.Filters
 					Expires = DateTime.Now.AddDays(1)
 				});
 
-
-
 				string actionName = httpContext.Request.Path;
-				logger.LogError($"{actionName} --- {e.Message}");
+				logger.LogError($"{actionName} --- {e.Message}"); // dont show exception message to cilent
 
 				httpContext.Response.Redirect("/");
 

@@ -20,6 +20,7 @@ using ECommerce.Application.Features.Commands.AppUser.GoogleLogin;
 using ECommerce.Application.Features.Commands.AppUser.PasswordReset;
 using ECommerce.Application.Features.Commands.AppUser.RefreshTokenLogin;
 using ECommerce.Application.Features.Queries.AppUser.GetUserById;
+using Microsoft.AspNetCore.Http;
 
 namespace ECommerceMVC.Controllers
 {
@@ -48,14 +49,19 @@ namespace ECommerceMVC.Controllers
         public async Task<IActionResult> Login(LoginUserCommandRequest loginUserCommandRequest)
         {
             if (!ModelState.IsValid) return View();
-            await _mediator.Send(loginUserCommandRequest);
-
+            var res = await _mediator.Send(loginUserCommandRequest);
+            if (!res.Success)
+            {
+                ModelState.AddModelError("Password", "E-poçt və ya şifrə yalnışdır");
+                return View(loginUserCommandRequest);
+            }
             return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
         public async Task<IActionResult> ForgotPassword(PasswordResetCommandRequest passwordResetCommandRequest)
         {
+            if(!ModelState.IsValid) return BadRequest(ModelState);
             PasswordResetCommandResponse response = await _mediator.Send(passwordResetCommandRequest);
             return Ok(response);
         }
@@ -177,7 +183,7 @@ namespace ECommerceMVC.Controllers
             return Ok(response);
         }
 
-        [HttpPost("assign-role-to-user")]
+        //[HttpPost("assign-role-to-user")]
         //[Authorize(AuthenticationSchemes = "Admin")]
         //[AuthorizeDefinition(ActionType = ActionType.Reading, Definition = "Assign Role To User", Menu = "Users")]
         public async Task<IActionResult> AssignRoleToUser([FromBody] AssignRoleToUserCommandRequest assignRoleToUserCommandRequest)
