@@ -52,7 +52,7 @@ namespace ECommerceMVC.Controllers
             var res = await _mediator.Send(loginUserCommandRequest);
             if (!res.Success)
             {
-                ModelState.AddModelError("Password", "E-poçt və ya şifrə yalnışdır");
+                ModelState.AddModelError("Password", res.Message);
                 return View(loginUserCommandRequest);
             }
             return RedirectToAction("Index", "Home");
@@ -61,7 +61,7 @@ namespace ECommerceMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> ForgotPassword(PasswordResetCommandRequest passwordResetCommandRequest)
         {
-            if(!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
             PasswordResetCommandResponse response = await _mediator.Send(passwordResetCommandRequest);
             return Ok(response);
         }
@@ -134,22 +134,25 @@ namespace ECommerceMVC.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateUser(CreateUserCommandRequest createUserCommandRequest)
+        public async Task<IActionResult> CreateUser([FromForm]CreateUserCommandRequest createUserCommandRequest)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-
             CreateUserCommandResponse response = await _mediator.Send(createUserCommandRequest);
-            return RedirectToAction(nameof(Index));
+            if (!response.Success)
+            {
+                ModelState.AddModelError("Password", response.Message);
+                return View(createUserCommandRequest);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
 
         [HttpGet("auth/updatepassword/{userId}")]
         public async Task<IActionResult> UpdatePassword([FromRoute] string userId)
         {
-			GetUserByIdQueryRequest getUserByIdQueryRequest = new GetUserByIdQueryRequest { UserId = userId };
-			GetUserByIdQueryResponse getUserByIdQueryHandler = await _mediator.Send(getUserByIdQueryRequest);
-            if(!getUserByIdQueryHandler.Result) { return NotFound("User not Found"); }
+            GetUserByIdQueryRequest getUserByIdQueryRequest = new GetUserByIdQueryRequest { UserId = userId };
+            GetUserByIdQueryResponse getUserByIdQueryHandler = await _mediator.Send(getUserByIdQueryRequest);
+            if (!getUserByIdQueryHandler.Result) { return NotFound("User not Found"); }
 
             UpdatePasswordCommandRequest updatePasswordCommandRequest = new UpdatePasswordCommandRequest { UserId = userId };
 
@@ -159,9 +162,9 @@ namespace ECommerceMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdatePassword(UpdatePasswordCommandRequest updatePasswordCommandRequest)
         {
-			if (!ModelState.IsValid) { return BadRequest(ModelState); }
+            if (!ModelState.IsValid) { return BadRequest(ModelState); }
             UpdatePasswordCommandResponse response = await _mediator.Send(updatePasswordCommandRequest);
-            if(response is null) return BadRequest(ModelState);
+            if (response is null) return BadRequest(ModelState);
             return View(nameof(Login));
         }
 

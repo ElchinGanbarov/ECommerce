@@ -16,7 +16,7 @@ using System.Security.Claims;
 namespace ECommerceMVC.Areas.Admins.Controllers
 {
     [Area("Admins")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "ADMIN")]
     [Route("[area]/[controller]/[action]")]
     public class DashboardController : Controller
     {

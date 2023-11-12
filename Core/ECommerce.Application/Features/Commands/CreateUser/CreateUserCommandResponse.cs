@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ECommerce.Application.Results;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Application.Features.Commands.CreateUser
 {
-    public class CreateUserCommandResponse
+    public class CreateUserCommandResponse : Result
     {
-        public bool Succeeded { get; set; }
-        public string Message { get; set; }
+        public CreateUserCommandResponse(bool success, string message) : base(success, message)
+        {
+        }
     }
 }

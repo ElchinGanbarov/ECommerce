@@ -1,8 +1,11 @@
-﻿namespace ECommerce.Application.Features.Commands.AppUser.CreateUser
+﻿using ECommerce.Application.Results;
+
+namespace ECommerce.Application.Features.Commands.AppUser.CreateUser
 {
-    public class CreateUserCommandResponse
+    public class CreateUserCommandResponse : Result
     {
-        public bool Succeeded { get; set; }
-        public string Message { get; set; }
+        public CreateUserCommandResponse(bool success, string message) : base(success, message)
+        {
+        }
     }
 }

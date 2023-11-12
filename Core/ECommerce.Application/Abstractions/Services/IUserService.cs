@@ -1,11 +1,12 @@
 ﻿using ECommerce.Application.DTOs.User;
+using ECommerce.Application.Results;
 using ECommerce.Domain.Entities.Identity;
 
 namespace ECommerce.Application.Abstractions.Services
 {
     public interface IUserService
     {
-        Task<CreateUserResponse> CreateAsync(CreateUser model);
+        Task<IResult> CreateAsync(CreateUser model);
 		Task<bool> GetUserById(string userId);
 
 		Task UpdateRefreshTokenAsync(string refreshToken, AppUser user, DateTime accessTokenDate, int addOnAccessTokenDate);

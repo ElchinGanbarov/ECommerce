@@ -1,0 +1,98 @@
+.small-img{
+    cursor: pointer;
+}
+
+.small-img-group{
+    display: flex;
+    justify-content: space-between;
+}
+
+.small-img-col{
+   flex-basis: 24%;
+}
+
+
+.sproduct select{
+    display: block;
+    padding: 5px 10px;
+}
+
+.sproduct input{
+    width: 50px;
+    height:40px;
+    padding-left: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.sproduct input:focus{
+    outline:none
+}
+
+
+.buy-btn{
+    background: #fb774b;
+    opacity:1;
+    transition: 0.3s all;
+    border: #fb774b;
+    color: white
+}
+
+.download-btn{
+    background: #236F21 ;
+    opacity:1;
+    transition: 0.3s all;
+    border: #236F21 ;
+    color: white
+}
+
+
+#makeItWished-btn{
+    margin: 2em 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#heart-btn{
+    color: #000;
+    z-index: 999;
+    cursor: pointer;
+    font-size:40px;
+}
+
+.heart-checkbox{
+    display: none;
+}
+
+
+.heart-checkbox:checked + 
+#heart-btn{
+    color: red;
+}
+
+.ui-dialog-titlebar-close {
+    background-image: url("../jquery-ui/images/ui-icons_777777_256x240.png");
+}
+
+#product-image #MainImg{
+    max-width: 100%;
+    height: auto;
+}
+#product-image{
+    max-width: 500px;
+    height: 600px;
+    max-height: auto;
+    margin: 3px;
+    padding: 3px;
+}
+
+.select-box {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
+    font-size: 18px;
+    color: #60666d;
+}

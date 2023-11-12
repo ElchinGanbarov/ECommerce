@@ -3,11 +3,13 @@ using ECommerce.Application.DTOs.User;
 using ECommerce.Application.Exceptions;
 using ECommerce.Application.Helpers;
 using ECommerce.Application.Repositories.Endpoints;
+using ECommerce.Application.Results;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using static Google.Apis.Requests.BatchRequest;
 
 namespace ECommerce.Persistence.Services
 {
@@ -23,7 +25,7 @@ namespace ECommerce.Persistence.Services
             _endpointReadRepository = endpointReadRepository;
         }
 
-        public async Task<CreateUserResponse> CreateAsync(CreateUser model)
+        public async Task<IResult> CreateAsync(CreateUser model)
         {
             IdentityResult result = await _userManager.CreateAsync(new()
             {
@@ -33,15 +35,11 @@ namespace ECommerce.Persistence.Services
                 NameSurname = model.NameSurname,
             }, model.Password);
 
-            CreateUserResponse response = new() { Succeeded = result.Succeeded };
+            if (!result.Succeeded)
+                return new ErrorResult(string.Join(", ", result.Errors));
 
-            if (result.Succeeded)
-                response.Message = "Kullanıcı başarıyla oluşturulmuştur.";
-            else
-                foreach (var error in result.Errors)
-                    response.Message += $"{error.Code} - {error.Description}\n";
+            return new SuccessResult("The user has been created successfully.");
 
-            return response;
         }
         public async Task UpdateRefreshTokenAsync(string refreshToken, AppUser user, DateTime accessTokenDate, int addOnAccessTokenDate)
         {

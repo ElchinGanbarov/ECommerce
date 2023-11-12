@@ -1,0 +1,61 @@
+.heart {
+    width: 80px;
+    height: 80px;
+    background: url("../imgs/heart.png") no-repeat;
+    background-position: 0 0;
+    cursor: pointer;
+    transition: background-position 1s steps(28);
+    transition-duration: 0s;
+}
+
+
+.heart.is-active {
+    transition-duration: 1s;
+    background-position: -2800px 0;
+}
+
+
+.card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.basket-icon-div i, .download-icon-div i{
+    display: inline-block;
+    width: 100%;
+}
+
+.basket-icon-div, .download-icon-div{
+    text-align:right;
+    cursor: pointer;
+}
+
+.cross {
+    position: relative;
+    display: inline-block;
+}
+.cross::before, .cross::after {
+    content: '';
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: 50%;
+}
+.cross::before {
+    border-bottom: 2px solid #e2264d;
+    -webkit-transform: skewY(-10deg);
+    transform: skewY(-10deg);
+}
+.cross::after {
+    border-bottom: 2px solid #e2264d;
+    -webkit-transform: skewY(10deg);
+    transform: skewY(10deg);
+}
+
+#footer{
+    background-color: #D0D0D0;
+}
+
+
+

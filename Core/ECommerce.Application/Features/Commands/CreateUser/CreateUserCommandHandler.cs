@@ -16,22 +16,15 @@ namespace ECommerce.Application.Features.Commands.CreateUser
 
         public async Task<CreateUserCommandResponse> Handle(CreateUserCommandRequest request, CancellationToken cancellationToken)
         {
-            CreateUserResponse response = await _userService.CreateAsync(new()
+            var response = await _userService.CreateAsync(new()
             {
                 Email = request.Email,
                 NameSurname = request.NameSurname,
                 Password = request.Password,
-                PasswordConfirm = request.PasswordConfirm,
-                Username = request.Username,
+                PasswordConfirm = request.Password,
+                Username = request.NameSurname,
             });
-
-            return new()
-            {
-                Message = response.Message,
-                Succeeded = response.Succeeded,
-            };
-
-            //throw new UserCreateFailedException();
+            return new CreateUserCommandResponse(response.Success, response.Message);
         }
     }
 }

@@ -2,7 +2,7 @@
     var isAdmin = this.Context.User.IsInRole("ADMIN");
 }
 
-<!DOCTYPE html>
+@* <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -64,4 +64,912 @@
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+</html> *@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@ViewData["Title"] - ECommerceMVC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @RenderSection("Head", required: false)
+    <link href="~/sb-admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="~/lib/jquery-toast-plugin/jquery.toast.min.css">
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ECommerceMVC.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" type="text/css" href="~/lib/jqueryui/themes/base/jquery-ui.min.css">
+
+    <link rel="stylesheet" href="~/fontawesome-free-6.4.2-web/css/all.min.css">
+    <link rel="stylesheet" href="~/fontawesome-free-6.4.2-web/css/regular.min.css">
+    <link rel="stylesheet" href="~/fontawesome-free-6.4.2-web/css/solid.min.css">
+
+    <link rel="stylesheet" href="~/css/nav-style.css">
+    <link rel="stylesheet" href="~/css/footer-style.css">
+    <link rel="stylesheet" href="~/css/card-style.css">
+    <link rel="stylesheet" href="~/css/filters-style.css">
+    <link rel="stylesheet" href="~/css/footer-style.css">
+    <link rel="stylesheet" href="~/css/common-style.css">
+    <title>Home Page</title>
+</head>
+
+<body>
+
+    <!--Navbar-->
+    <div id="navbar ">
+        <header class="py-3 mb-3 border-bottom">
+            <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
+                <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none">
+                    Logo <!-- svg kimi logo -->
+                </a>
+                <div class="d-flex align-items-center">
+                    <form class="w-100 me-3">
+                        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                    </form>
+
+                    <div class="flex-shrink-0 dropdown">
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32"
+                                 class="rounded-circle">
+                        </a>
+                        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                            <li><a class="dropdown-item" href="#">Login</a></li>
+                            <li><a class="dropdown-item" href="#">Register</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li> <!-- Bunu if kimi dusun, UI-da ayird ede bilesen deye qoymusam, sonra sil -->
+                            <!-- Eger login olubsa, asagidakilar -->
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Order History</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div id="header">
+        <h1 id="main-header">
+            the Beauty in Imperfections
+        </h1>
+    </div>
+    <div class="b-example-divider"></div>
+
+    <!--Body-->
+    <div id="body" class="mb-5">
+        <!--Popular Categories-->
+        <section class="about-cards-section">
+            <h2 class="text-center my-3">Shop By Categories</h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3 card-wrapper">
+                        <div class="card border-0">
+                            <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
+                                <img class="w-100 h-100" src="imgs/img1.jpg" alt="Card image cap">
+                            </div>
+                            <div class="card-body text-center mt-4">
+                                <h5 class="text-uppercase card-title">Wall Art</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3 card-wrapper">
+                        <div class="card border-0">
+                            <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
+                                <img class="w-100 h-100" src="imgs/img1.jpg" alt="Card image cap">
+                            </div>
+                            <div class="card-body text-center mt-4">
+                                <h5 class="text-uppercase card-title">Posters</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3 card-wrapper">
+                        <div class="card border-0">
+                            <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
+                                <img class="w-100 h-100" src="imgs/img1.jpg" alt="Card image cap">
+                            </div>
+                            <div class="card-body text-center mt-4">
+                                <h5 class="text-uppercase card-title">Thank You Cards</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3 card-wrapper">
+                        <div class="card border-0">
+                            <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
+                                <img class="w-100 h-100" src="imgs/img1.jpg" alt="Card image cap">
+                            </div>
+                            <div class="card-body text-center mt-4">
+                                <h5 class="text-uppercase card-title">Gift Cards</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="container">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </section>
+
+        <div id="latest-products">
+
+            <h2 class="text-center mt-3 mb-3">Latest products</h2>
+
+            <div class="container">
+                <div id="content" class="my-5">
+
+                    <!--Products-->
+                    <div id="products">
+                        <div class="row mx-0">
+                            <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
+                                <div class="card" style="width: 18rem;">
+                                    <div>
+                                        <img src="imgs/img2.jpg" class="card-img-top" alt="...">
+                                        <div style="position: absolute;top: 1px;right: 0px;">
+
+                                            <div class="stage">
+                                                <div class="heart"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <div class="row row-cols-2">
+                                            <div class="col">
+                                                <p>$9.99</p>
+                                            </div>
+                                            <div class="col">
+                                                <!--Burda if qoyulacaq, eger mehsul alinMAYIBSA, sebeti, alinIBSA, download div gorunecek-->
+                                                <div class="basket-icon-div">
+                                                    <!--Buna basanda, mehsul sebete elave olunur-->
+                                                    <i class="fa-solid fa-2x fa-basket-shopping" data-toggle="modal"
+                                                       data-target="#exampleModalCenter" style="color: #000000;"></i>
+                                                </div>
+                                                <div class="download-icon-div">
+                                                    <!--Buna basanda mehsul linki ajax ile yuklenecek-->
+                                                    <i class="fa-solid fa-2x fa-circle-down" style="color: #000000;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
+                                <div class="card" style="width: 18rem;">
+                                    <div>
+                                        <img src="imgs/img2.jpg" class="card-img-top" alt="...">
+                                        <div style="position: absolute;top: 1px;right: 0px;">
+
+                                            <div class="stage">
+                                                <div class="heart"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <div class="row row-cols-2">
+                                            <div class="col">
+                                                <p>$9.99</p>
+                                            </div>
+                                            <div class="col">
+                                                <!--Burda if qoyulacaq, eger mehsul alinMAYIBSA, sebeti, alinIBSA, download div gorunecek-->
+                                                <div class="basket-icon-div">
+                                                    <!--Buna basanda, mehsul sebete elave olunur-->
+                                                    <i class="fa-solid fa-2x fa-basket-shopping" data-toggle="modal"
+                                                       data-target="#exampleModalCenter" style="color: #000000;"></i>
+                                                </div>
+                                                <div class="download-icon-div">
+                                                    <!--Buna basanda mehsul linki ajax ile yuklenecek-->
+                                                    <i class="fa-solid fa-2x fa-circle-down" style="color: #000000;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
+                                <div class="card" style="width: 18rem;">
+                                    <div>
+                                        <img src="imgs/img2.jpg" class="card-img-top" alt="...">
+                                        <div style="position: absolute;top: 1px;right: 0px;">
+
+                                            <div class="stage">
+                                                <div class="heart"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <div class="row row-cols-2">
+                                            <div class="col">
+                                                <p>$9.99</p>
+                                            </div>
+                                            <div class="col">
+                                                <!--Burda if qoyulacaq, eger mehsul alinMAYIBSA, sebeti, alinIBSA, download div gorunecek-->
+                                                <div class="basket-icon-div">
+                                                    <!--Buna basanda, mehsul sebete elave olunur-->
+                                                    <i class="fa-solid fa-2x fa-basket-shopping" data-toggle="modal"
+                                                       data-target="#exampleModalCenter" style="color: #000000;"></i>
+                                                </div>
+                                                <div class="download-icon-div">
+                                                    <!--Buna basanda mehsul linki ajax ile yuklenecek-->
+                                                    <i class="fa-solid fa-2x fa-circle-down" style="color: #000000;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
+                                <div class="card" style="width: 18rem;">
+                                    <div>
+                                        <img src="imgs/img2.jpg" class="card-img-top" alt="...">
+                                        <div style="position: absolute;top: 1px;right: 0px;">
+
+                                            <div class="stage">
+                                                <div class="heart"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <div class="row row-cols-2">
+                                            <div class="col">
+                                                <p>$9.99</p>
+                                            </div>
+                                            <div class="col">
+                                                <!--Burda if qoyulacaq, eger mehsul alinMAYIBSA, sebeti, alinIBSA, download div gorunecek-->
+                                                <div class="basket-icon-div">
+                                                    <!--Buna basanda, mehsul sebete elave olunur-->
+                                                    <i class="fa-solid fa-2x fa-basket-shopping" data-toggle="modal"
+                                                       data-target="#exampleModalCenter" style="color: #000000;"></i>
+                                                </div>
+                                                <div class="download-icon-div">
+                                                    <!--Buna basanda mehsul linki ajax ile yuklenecek-->
+                                                    <i class="fa-solid fa-2x fa-circle-down" style="color: #000000;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
+                                <div class="card" style="width: 18rem;">
+                                    <div>
+                                        <img src="imgs/img2.jpg" class="card-img-top" alt="...">
+                                        <div style="position: absolute;top: 1px;right: 0px;">
+
+                                            <div class="stage">
+                                                <div class="heart"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <div class="row row-cols-2">
+                                            <div class="col">
+                                                <p>$9.99</p>
+                                            </div>
+                                            <div class="col">
+                                                <!--Burda if qoyulacaq, eger mehsul alinMAYIBSA, sebeti, alinIBSA, download div gorunecek-->
+                                                <div class="basket-icon-div">
+                                                    <!--Buna basanda, mehsul sebete elave olunur-->
+                                                    <i class="fa-solid fa-2x fa-basket-shopping" data-toggle="modal"
+                                                       data-target="#exampleModalCenter" style="color: #000000;"></i>
+                                                </div>
+                                                <div class="download-icon-div">
+                                                    <!--Buna basanda mehsul linki ajax ile yuklenecek-->
+                                                    <i class="fa-solid fa-2x fa-circle-down" style="color: #000000;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
+                                <div class="card" style="width: 18rem;">
+                                    <div>
+                                        <img src="imgs/img2.jpg" class="card-img-top" alt="...">
+                                        <div style="position: absolute;top: 1px;right: 0px;">
+
+                                            <div class="stage">
+                                                <div class="heart"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <div class="row row-cols-2">
+                                            <div class="col">
+                                                <p>$9.99</p>
+                                            </div>
+                                            <div class="col">
+                                                <!--Burda if qoyulacaq, eger mehsul alinMAYIBSA, sebeti, alinIBSA, download div gorunecek-->
+                                                <div class="basket-icon-div">
+                                                    <!--Buna basanda, mehsul sebete elave olunur-->
+                                                    <i class="fa-solid fa-2x fa-basket-shopping" data-toggle="modal"
+                                                       data-target="#exampleModalCenter" style="color: #000000;"></i>
+                                                </div>
+                                                <div class="download-icon-div">
+                                                    <!--Buna basanda mehsul linki ajax ile yuklenecek-->
+                                                    <i class="fa-solid fa-2x fa-circle-down" style="color: #000000;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
+                                <div class="card" style="width: 18rem;">
+                                    <div>
+                                        <img src="imgs/img2.jpg" class="card-img-top" alt="...">
+                                        <div style="position: absolute;top: 1px;right: 0px;">
+
+                                            <div class="stage">
+                                                <div class="heart"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <div class="row row-cols-2">
+                                            <div class="col">
+                                                <p>$9.99</p>
+                                            </div>
+                                            <div class="col">
+                                                <!--Burda if qoyulacaq, eger mehsul alinMAYIBSA, sebeti, alinIBSA, download div gorunecek-->
+                                                <div class="basket-icon-div">
+                                                    <!--Buna basanda, mehsul sebete elave olunur-->
+                                                    <i class="fa-solid fa-2x fa-basket-shopping" data-toggle="modal"
+                                                       data-target="#exampleModalCenter" style="color: #000000;"></i>
+                                                </div>
+                                                <div class="download-icon-div">
+                                                    <!--Buna basanda mehsul linki ajax ile yuklenecek-->
+                                                    <i class="fa-solid fa-2x fa-circle-down" style="color: #000000;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
+                                <div class="card" style="width: 18rem;">
+                                    <div>
+                                        <img src="imgs/img2.jpg" class="card-img-top" alt="...">
+                                        <div style="position: absolute;top: 1px;right: 0px;">
+
+                                            <div class="stage">
+                                                <div class="heart"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <div class="row row-cols-2">
+                                            <div class="col">
+                                                <p>$9.99</p>
+                                            </div>
+                                            <div class="col">
+                                                <!--Burda if qoyulacaq, eger mehsul alinMAYIBSA, sebeti, alinIBSA, download div gorunecek-->
+                                                <div class="basket-icon-div">
+                                                    <!--Buna basanda, mehsul sebete elave olunur-->
+                                                    <i class="fa-solid fa-2x fa-basket-shopping" data-toggle="modal"
+                                                       data-target="#exampleModalCenter" style="color: #000000;"></i>
+                                                </div>
+                                                <div class="download-icon-div">
+                                                    <!--Buna basanda mehsul linki ajax ile yuklenecek-->
+                                                    <i class="fa-solid fa-2x fa-circle-down" style="color: #000000;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
+                                <div class="card" style="width: 18rem;">
+                                    <div>
+                                        <img src="imgs/img2.jpg" class="card-img-top" alt="...">
+                                        <div style="position: absolute;top: 1px;right: 0px;">
+
+                                            <div class="stage">
+                                                <div class="heart"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <div class="row row-cols-2">
+                                            <div class="col">
+                                                <p>$9.99</p>
+                                            </div>
+                                            <div class="col">
+                                                <!--Burda if qoyulacaq, eger mehsul alinMAYIBSA, sebeti, alinIBSA, download div gorunecek-->
+                                                <div class="basket-icon-div">
+                                                    <!--Buna basanda, mehsul sebete elave olunur-->
+                                                    <i class="fa-solid fa-2x fa-basket-shopping" data-toggle="modal"
+                                                       data-target="#exampleModalCenter" style="color: #000000;"></i>
+                                                </div>
+                                                <div class="download-icon-div">
+                                                    <!--Buna basanda mehsul linki ajax ile yuklenecek-->
+                                                    <i class="fa-solid fa-2x fa-circle-down" style="color: #000000;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-warning my-3 text-center btn-orange">Click for more...</button>
+                        </div>
+                    </div>
+                    <!--Products-->
+                </div>
+            </div>
+
+        </div>
+
+        <div id="latest-products">
+
+            <h2 class="text-center mt-3 mb-3">Sale products</h2>
+
+            <div class="container">
+                <div id="content" class="my-5">
+
+                    <!--Products-->
+                    <div id="products">
+                        <div class="row mx-0">
+                            <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
+                                <div class="card" style="width: 18rem;">
+                                    <div>
+                                        <img src="imgs/img2.jpg" class="card-img-top" alt="...">
+                                        <div style="position: absolute;top: 1px;right: 0px;">
+
+                                            <div class="stage">
+                                                <div class="heart"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <div class="row row-cols-2">
+                                            <div class="col">
+                                                <p>$9.99</p>
+                                                <p class="cross">$19.99</p> <!--Eqom, bunu endirim varsa, goster-->
+                                            </div>
+                                            <div class="col">
+                                                <!--Burda if qoyulacaq, eger mehsul alinMAYIBSA, sebeti, alinIBSA, download div gorunecek-->
+                                                <div class="basket-icon-div">
+                                                    <!--Buna basanda, mehsul sebete elave olunur-->
+                                                    <i class="fa-solid fa-2x fa-basket-shopping" data-toggle="modal"
+                                                       data-target="#exampleModalCenter" style="color: #000000;"></i>
+                                                </div>
+                                                <div class="download-icon-div">
+                                                    <!--Buna basanda mehsul linki ajax ile yuklenecek-->
+                                                    <i class="fa-solid fa-2x fa-circle-down" style="color: #000000;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
+                                <div class="card" style="width: 18rem;">
+                                    <div>
+                                        <img src="imgs/img2.jpg" class="card-img-top" alt="...">
+                                        <div style="position: absolute;top: 1px;right: 0px;">
+
+                                            <div class="stage">
+                                                <div class="heart"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <div class="row row-cols-2">
+                                            <div class="col">
+                                                <p>$9.99</p>
+                                                <p class="cross">$19.99</p> <!--Eqom, bunu endirim varsa, goster-->
+                                            </div>
+                                            <div class="col">
+                                                <!--Burda if qoyulacaq, eger mehsul alinMAYIBSA, sebeti, alinIBSA, download div gorunecek-->
+                                                <div class="basket-icon-div">
+                                                    <!--Buna basanda, mehsul sebete elave olunur-->
+                                                    <i class="fa-solid fa-2x fa-basket-shopping" data-toggle="modal"
+                                                       data-target="#exampleModalCenter" style="color: #000000;"></i>
+                                                </div>
+                                                <div class="download-icon-div">
+                                                    <!--Buna basanda mehsul linki ajax ile yuklenecek-->
+                                                    <i class="fa-solid fa-2x fa-circle-down" style="color: #000000;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
+                                <div class="card" style="width: 18rem;">
+                                    <div>
+                                        <img src="imgs/img2.jpg" class="card-img-top" alt="...">
+                                        <div style="position: absolute;top: 1px;right: 0px;">
+
+                                            <div class="stage">
+                                                <div class="heart"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <div class="row row-cols-2">
+                                            <div class="col">
+                                                <p>$9.99</p>
+                                                <p class="cross">$19.99</p> <!--Eqom, bunu endirim varsa, goster-->
+                                            </div>
+                                            <div class="col">
+                                                <!--Burda if qoyulacaq, eger mehsul alinMAYIBSA, sebeti, alinIBSA, download div gorunecek-->
+                                                <div class="basket-icon-div">
+                                                    <!--Buna basanda, mehsul sebete elave olunur-->
+                                                    <i class="fa-solid fa-2x fa-basket-shopping" data-toggle="modal"
+                                                       data-target="#exampleModalCenter" style="color: #000000;"></i>
+                                                </div>
+                                                <div class="download-icon-div">
+                                                    <!--Buna basanda mehsul linki ajax ile yuklenecek-->
+                                                    <i class="fa-solid fa-2x fa-circle-down" style="color: #000000;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
+                                <div class="card" style="width: 18rem;">
+                                    <div>
+                                        <img src="imgs/img2.jpg" class="card-img-top" alt="...">
+                                        <div style="position: absolute;top: 1px;right: 0px;">
+
+                                            <div class="stage">
+                                                <div class="heart"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <div class="row row-cols-2">
+                                            <div class="col">
+                                                <p>$9.99</p>
+                                                <p class="cross">$19.99</p> <!--Eqom, bunu endirim varsa, goster-->
+                                            </div>
+                                            <div class="col">
+                                                <!--Burda if qoyulacaq, eger mehsul alinMAYIBSA, sebeti, alinIBSA, download div gorunecek-->
+                                                <div class="basket-icon-div">
+                                                    <!--Buna basanda, mehsul sebete elave olunur-->
+                                                    <i class="fa-solid fa-2x fa-basket-shopping" data-toggle="modal"
+                                                       data-target="#exampleModalCenter" style="color: #000000;"></i>
+                                                </div>
+                                                <div class="download-icon-div">
+                                                    <!--Buna basanda mehsul linki ajax ile yuklenecek-->
+                                                    <i class="fa-solid fa-2x fa-circle-down" style="color: #000000;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
+                                <div class="card" style="width: 18rem;">
+                                    <div>
+                                        <img src="imgs/img2.jpg" class="card-img-top" alt="...">
+                                        <div style="position: absolute;top: 1px;right: 0px;">
+
+                                            <div class="stage">
+                                                <div class="heart"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <div class="row row-cols-2">
+                                            <div class="col">
+                                                <p>$9.99</p>
+                                                <p class="cross">$19.99</p> <!--Eqom, bunu endirim varsa, goster-->
+                                            </div>
+                                            <div class="col">
+                                                <!--Burda if qoyulacaq, eger mehsul alinMAYIBSA, sebeti, alinIBSA, download div gorunecek-->
+                                                <div class="basket-icon-div">
+                                                    <!--Buna basanda, mehsul sebete elave olunur-->
+                                                    <i class="fa-solid fa-2x fa-basket-shopping" data-toggle="modal"
+                                                       data-target="#exampleModalCenter" style="color: #000000;"></i>
+                                                </div>
+                                                <div class="download-icon-div">
+                                                    <!--Buna basanda mehsul linki ajax ile yuklenecek-->
+                                                    <i class="fa-solid fa-2x fa-circle-down" style="color: #000000;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
+                                <div class="card" style="width: 18rem;">
+                                    <div>
+                                        <img src="imgs/img2.jpg" class="card-img-top" alt="...">
+                                        <div style="position: absolute;top: 1px;right: 0px;">
+
+                                            <div class="stage">
+                                                <div class="heart"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <div class="row row-cols-2">
+                                            <div class="col">
+                                                <p>$9.99</p>
+                                                <p class="cross">$19.99</p> <!--Eqom, bunu endirim varsa, goster-->
+                                            </div>
+                                            <div class="col">
+                                                <!--Burda if qoyulacaq, eger mehsul alinMAYIBSA, sebeti, alinIBSA, download div gorunecek-->
+                                                <div class="basket-icon-div">
+                                                    <!--Buna basanda, mehsul sebete elave olunur-->
+                                                    <i class="fa-solid fa-2x fa-basket-shopping" data-toggle="modal"
+                                                       data-target="#exampleModalCenter" style="color: #000000;"></i>
+                                                </div>
+                                                <div class="download-icon-div">
+                                                    <!--Buna basanda mehsul linki ajax ile yuklenecek-->
+                                                    <i class="fa-solid fa-2x fa-circle-down" style="color: #000000;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
+                                <div class="card" style="width: 18rem;">
+                                    <div>
+                                        <img src="imgs/img2.jpg" class="card-img-top" alt="...">
+                                        <div style="position: absolute;top: 1px;right: 0px;">
+
+                                            <div class="stage">
+                                                <div class="heart"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <div class="row row-cols-2">
+                                            <div class="col">
+                                                <p>$9.99</p>
+                                                <p class="cross">$19.99</p> <!--Eqom, bunu endirim varsa, goster-->
+                                            </div>
+                                            <div class="col">
+                                                <!--Burda if qoyulacaq, eger mehsul alinMAYIBSA, sebeti, alinIBSA, download div gorunecek-->
+                                                <div class="basket-icon-div">
+                                                    <!--Buna basanda, mehsul sebete elave olunur-->
+                                                    <i class="fa-solid fa-2x fa-basket-shopping" data-toggle="modal"
+                                                       data-target="#exampleModalCenter" style="color: #000000;"></i>
+                                                </div>
+                                                <div class="download-icon-div">
+                                                    <!--Buna basanda mehsul linki ajax ile yuklenecek-->
+                                                    <i class="fa-solid fa-2x fa-circle-down" style="color: #000000;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
+                                <div class="card" style="width: 18rem;">
+                                    <div>
+                                        <img src="imgs/img2.jpg" class="card-img-top" alt="...">
+                                        <div style="position: absolute;top: 1px;right: 0px;">
+
+                                            <div class="stage">
+                                                <div class="heart"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <div class="row row-cols-2">
+                                            <div class="col">
+                                                <p>$9.99</p>
+                                                <p class="cross">$19.99</p> <!--Eqom, bunu endirim varsa, goster-->
+                                            </div>
+                                            <div class="col">
+                                                <!--Burda if qoyulacaq, eger mehsul alinMAYIBSA, sebeti, alinIBSA, download div gorunecek-->
+                                                <div class="basket-icon-div">
+                                                    <!--Buna basanda, mehsul sebete elave olunur-->
+                                                    <i class="fa-solid fa-2x fa-basket-shopping" data-toggle="modal"
+                                                       data-target="#exampleModalCenter" style="color: #000000;"></i>
+                                                </div>
+                                                <div class="download-icon-div">
+                                                    <!--Buna basanda mehsul linki ajax ile yuklenecek-->
+                                                    <i class="fa-solid fa-2x fa-circle-down" style="color: #000000;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
+                                <div class="card" style="width: 18rem;">
+                                    <div>
+                                        <img src="imgs/img2.jpg" class="card-img-top" alt="...">
+                                        <div style="position: absolute;top: 1px;right: 0px;">
+
+                                            <div class="stage">
+                                                <div class="heart"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <div class="row row-cols-2">
+                                            <div class="col">
+                                                <p>$9.99</p>
+                                                <p class="cross">$19.99</p> <!--Eqom, bunu endirim varsa, goster-->
+                                            </div>
+                                            <div class="col">
+                                                <!--Burda if qoyulacaq, eger mehsul alinMAYIBSA, sebeti, alinIBSA, download div gorunecek-->
+                                                <div class="basket-icon-div">
+                                                    <!--Buna basanda, mehsul sebete elave olunur-->
+                                                    <i class="fa-solid fa-2x fa-basket-shopping" data-toggle="modal"
+                                                       data-target="#exampleModalCenter" style="color: #000000;"></i>
+                                                </div>
+                                                <div class="download-icon-div">
+                                                    <!--Buna basanda mehsul linki ajax ile yuklenecek-->
+                                                    <i class="fa-solid fa-2x fa-circle-down" style="color: #000000;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-warning my-3 text-center btn-orange">Click for more...</button>
+                        </div>
+
+                    </div>
+                    <!--Products-->
+                </div>
+            </div>
+
+        </div>
+        <!--Basket success dialog-->
+        <div id="dialog-basket" title="SUCCESS">
+            <p>
+                <i class="fa-solid fa-check" style="color: #2c511f;"></i>
+                Item added to basket!
+            </p>
+        </div>
+
+        <!--Product downloaded successfully dialog-->
+        <div id="downloaded-dialog" title="SUCCESS">
+            <p>
+                <i class="fa-solid fa-check" style="color: #2c511f;"></i>
+                Product downloaded successfully
+            </p>
+        </div>
+
+        <!--Basket success dialog-->
+        <div id="dialog-wishlist" title="SUCCESS">
+            <p>
+                <i class="fa-solid fa-check" style="color: #2c511f;"></i>
+                Item added to wishlist!
+            </p>
+        </div>
+    </div>
+
+    <!--footer-->
+    <div id="footer">
+        <div class="container">
+            <footer class="py-5">
+                <div class="row">
+                    <div class="col-6 col-md-2 mb-3">
+                        <h5>Navigation</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Account</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About Us</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-6 col-md-2 mb-3">
+                        <h5>Help</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Contact Us</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQ</a></li>
+                        </ul>
+                    </div>
+
+
+                    <div class="col-6 col-md-2 mb-3">
+                        <h5>Payment</h5>
+                        <ul class="nav flex-column">
+                            <!--Odenis kartlari-->
+                            <li class="nav-item mb-2"><a href="#" class="nav-link fa-2x p-0 text-muted"><i class="fa-brands fa-paypal" style="color: #fb774b;"></i></a></li>
+
+                        </ul>
+                    </div>
+
+
+                    <div class="col-md-5 offset-md-1 mb-3">
+                        <form>
+                            <h5>Subscribe to our newsletter</h5>
+                            <p>Monthly digest of what's new and exciting from us.</p>
+                            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                                <label for="newsletter1" class="visually-hidden">Email address</label>
+                                <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                                <button class="btn btn-primary" id="email-subscribe-btn" type="button">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+                    <p>&copy; 2022 Company Name, Inc. All rights reserved.</p>
+                    <ul class="list-unstyled d-flex">
+                        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter" /></svg></a></li>
+                        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram" /></svg></a></li>
+                        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook" /></svg></a></li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="~/fontawesome-free-6.4.2-web/js/fontawesome.min.js"></script>
+    <script src="~/js/cards-scripts.js"></script>
+    <script src="~/js/home-filters.js"></script>
+    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="https://kit.fontawesome.com/1cc93dc038.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/jquery-toast-plugin/jquery.toast.min.js"></script>
+    <script src="~/lib/js-cookie/js.cookie.min.js"></script>
+    <script src="~/js/customer.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
 </html>

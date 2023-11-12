@@ -3,13 +3,11 @@ using ECommerce.Application.Results;
 
 namespace ECommerce.Application.Features.Commands.AppUser.LoginUser
 {
-    public class LoginUserCommandResponse : IResult
+    public class LoginUserCommandResponse : DataResult<Token>
     {
-        public bool Success { get; set; }
-
-        public string Message { get; set; }
-        public Token Token { get; set; }
-
+        public LoginUserCommandResponse(Token data, bool success, string message) : base(data, success, message)
+        {
+        }
     }
 
 }

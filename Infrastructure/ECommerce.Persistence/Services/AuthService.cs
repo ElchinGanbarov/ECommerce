@@ -5,6 +5,7 @@ using ECommerce.Application.DTOs.Facebook;
 using ECommerce.Application.Exceptions;
 using ECommerce.Application.Features.Commands.AppUser.LoginUser;
 using ECommerce.Application.Helpers;
+using ECommerce.Application.Results;
 using ECommerce.Domain.Entities.Identity;
 using Google.Apis.Auth;
 using Microsoft.AspNetCore.Identity;
@@ -110,14 +111,14 @@ namespace ECommerce.Persistence.Services
             return await CreateUserExternalAsync(user, email, name, info, 50);
         }
 
-        public async Task<Token> LoginAsync(string usernameOrEmail, string password, DateTime exparitonDateTime)
+        public async Task<IDataResult<Token>> LoginAsync(string usernameOrEmail, string password, DateTime exparitonDateTime)
         {
             Domain.Entities.Identity.AppUser user = await _userManager.FindByNameAsync(usernameOrEmail);
             if (user == null)
                 user = await _userManager.FindByEmailAsync(usernameOrEmail);
             
             if (user == null)
-                return null;
+                return new ErrorDataResult<Token>("User not Found");
 
             SignInResult result = await _signInManager.CheckPasswordSignInAsync(user, password, false);
             if (result.Succeeded) //Authentication başarılı!
@@ -127,9 +128,9 @@ namespace ECommerce.Persistence.Services
                 await _signInManager.PasswordSignInAsync(usernameOrEmail, password, false, lockoutOnFailure: false);
 
 
-                return token;
+                return new SuccessDataResult<Token>(token);
             }
-            return null;
+            return new ErrorDataResult<Token>("Password Invalid");
         }
 
         public async Task<Token> RefreshTokenLoginAsync(string refreshToken)
