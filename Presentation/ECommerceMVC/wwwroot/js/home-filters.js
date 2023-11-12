@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    console.log("home-filters");
 
     // For Filters
     document.addEventListener("DOMContentLoaded", function () {
@@ -134,4 +135,4 @@ $(document).ready(function () {
         });
     });
 
-}
+});

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    console.log("cards-script");
     $(function () {
         $(".heart").on("click", function () {
             $(this).toggleClass("is-active");
@@ -98,4 +98,4 @@ $(document).ready(function () {
 
     });
 
-}
+});

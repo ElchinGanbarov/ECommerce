@@ -128,13 +128,13 @@ namespace ECommerceMVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateUser()
+        public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUser([FromForm]CreateUserCommandRequest createUserCommandRequest)
+        public async Task<IActionResult> Register([FromForm]CreateUserCommandRequest createUserCommandRequest)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             CreateUserCommandResponse response = await _mediator.Send(createUserCommandRequest);
