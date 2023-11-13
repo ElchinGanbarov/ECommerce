@@ -7,12 +7,9 @@ namespace ECommerce.Application.Features.Commands.AppUser.LoginUser
     public class LoginUserCommandHandler : IRequestHandler<LoginUserCommandRequest, LoginUserCommandResponse>
     {
         readonly IAuthService _authService;
-        private readonly IHttpContextAccessor _contextAccessor;
-        public LoginUserCommandHandler(IAuthService authService,
-            IHttpContextAccessor contextAccessor)
+        public LoginUserCommandHandler(IAuthService authService)
         {
             _authService = authService;
-            _contextAccessor = contextAccessor;
         }
 
         public async Task<LoginUserCommandResponse> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)

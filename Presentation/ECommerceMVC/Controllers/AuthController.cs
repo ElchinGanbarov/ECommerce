@@ -21,6 +21,7 @@ using ECommerce.Application.Features.Commands.AppUser.PasswordReset;
 using ECommerce.Application.Features.Commands.AppUser.RefreshTokenLogin;
 using ECommerce.Application.Features.Queries.AppUser.GetUserById;
 using Microsoft.AspNetCore.Http;
+using ECommerce.Application.Features.Commands.AppUser.LogoutUser;
 
 namespace ECommerceMVC.Controllers
 {
@@ -193,6 +194,15 @@ namespace ECommerceMVC.Controllers
         {
             AssignRoleToUserCommandResponse response = await _mediator.Send(assignRoleToUserCommandRequest);
             return Ok(response);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            var res = await _mediator.Send(new LogoutUserCommandRequest());
+
+            if (res is null) return BadRequest(res?.Message);
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

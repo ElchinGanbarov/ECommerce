@@ -133,6 +133,12 @@ namespace ECommerce.Persistence.Services
             return new ErrorDataResult<Token>("Password Invalid");
         }
 
+        public async Task<IResult> LogoutAsync()
+        {
+          await _signInManager.SignOutAsync();
+          return new SuccessResult("logout user");
+        }
+
         public async Task<Token> RefreshTokenLoginAsync(string refreshToken)
         {
             AppUser? user = await _userManager.Users.FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);

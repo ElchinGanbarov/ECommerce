@@ -114,27 +114,34 @@
                     <form class="w-100 me-3">
                         <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
                     </form>
+                    @if (!this.Context.User.Identity.IsAuthenticated)
+                    {
+                        <a class="dropdown-item" asp-area="" asp-controller="auth" asp-action="login">Login</a>
 
-                    <div class="flex-shrink-0 dropdown">
-                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32"
-                                 class="rounded-circle">
-                        </a>
-                        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                            <li><a class="dropdown-item" asp-area="" asp-controller="auth" asp-action="login">Login</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li> <!-- Bunu if kimi dusun, UI-da ayird ede bilesen deye qoymusam, sonra sil -->
-                            <!-- Eger login olubsa, asagidakilar -->
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Order History</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Sign out</a></li>
-                        </ul>
-                    </div>
+                    }else
+                    {
+                        <div class="flex-shrink-0 dropdown">
+                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32"
+                                     class="rounded-circle">
+                            </a>
+                            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Order History</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                @if (isAdmin)
+                                {
+                                    <li><a class="dropdown-item" asp-area="admins" asp-controller="dashboard" asp-action="index">Admin Panel</a></li>
+                                }
+                                <li><a class="dropdown-item" asp-area="" asp-controller="auth" asp-action="logout">Sign out</a></li>
+                            </ul>
+                        </div>
+                    }
+               
+
                 </div>
             </div>
         </header>
