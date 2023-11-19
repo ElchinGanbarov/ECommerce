@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerce.Application.Features.Queries.GetAllProduct
+namespace ECommerce.Application.Features.Queries.SearchProduct
 {
     public class SearchProductQueryRequest : IRequest<SearchProductQueryResponse>
     {

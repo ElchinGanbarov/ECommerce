@@ -18,11 +18,13 @@ using NpgsqlTypes;
 using System.Net;
 using System.Security.Claims;
 using System.Text;
+using static System.Formats.Asn1.AsnWriter;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 //builder.Services.AddControllersWithViews();
+
 
 
 builder.Services.AddControllersWithViews(options =>
@@ -76,15 +78,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-
-
-
-
-
-
-
 var app = builder.Build();
 
+app.Services.CreateScope().ServiceProvider.GetRequiredService<ECommerceDbContext>().Database.Migrate(); // deploying to prod db migrate
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
