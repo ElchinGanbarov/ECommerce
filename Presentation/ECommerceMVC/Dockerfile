@@ -9,15 +9,9 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-WORKDIR /src
-COPY ["Presentation/ECommerceMVC/ECommerceMVC.csproj", "Presentation/ECommerceMVC/"]
-COPY ["Core/ECommerce.Application/ECommerce.Application.csproj", "Core/ECommerce.Application/"]
-COPY ["Core/ECommerce.Domain/ECommerce.Domain.csproj", "Core/ECommerce.Domain/"]
-COPY ["Infrastructure/ECommerce.Infrastucture/ECommerce.Infrastucture.csproj", "Infrastructure/ECommerce.Infrastucture/"]
-COPY ["Infrastructure/ECommerce.Persistence/ECommerce.Persistence.csproj", "Infrastructure/ECommerce.Persistence/"]
-RUN dotnet restore "Presentation/ECommerceMVC/ECommerceMVC.csproj"
+COPY *.csproj ./
+RUN dotnet restore 
 COPY . .
-WORKDIR "/src/Presentation/ECommerceMVC"
 RUN dotnet build "ECommerceMVC.csproj" -c Release -o /app/build
 
 FROM build AS publish
