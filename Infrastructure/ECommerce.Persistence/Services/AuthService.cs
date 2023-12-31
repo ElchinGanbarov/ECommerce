@@ -8,6 +8,7 @@ using ECommerce.Application.Helpers;
 using ECommerce.Application.Results;
 using ECommerce.Domain.Entities.Identity;
 using Google.Apis.Auth;
+using Google.Apis.Auth.OAuth2;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -75,6 +76,8 @@ namespace ECommerce.Persistence.Services
 
                 Token token = _tokenHandler.CreateAccessToken(DateTime.UtcNow.AddDays(accessTokenLifeTime), user);
                 await _userService.UpdateRefreshTokenAsync(token.RefreshToken, user, token.Expiration, 15);
+                await _signInManager.SignInAsync(user, true);
+                
                 return token;
             }
             throw new Exception("Invalid external authentication.");

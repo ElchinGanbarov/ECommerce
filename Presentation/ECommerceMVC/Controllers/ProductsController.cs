@@ -18,13 +18,7 @@ namespace ECommerceMVC.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            CreateProductCommandRequest createProductCommandRequest = new CreateProductCommandRequest
-            {
-                Name = "ASUS ROG STRIX",
-                Price = 50,
-                Stock = 5
-            };
-
+            CreateProductCommandRequest createProductCommandRequest = new CreateProductCommandRequest(Name:"Elchin",Stock:1,Price:50);
             CreateProductCommandResponse response = await _mediator.Send(createProductCommandRequest);
 
             return View();

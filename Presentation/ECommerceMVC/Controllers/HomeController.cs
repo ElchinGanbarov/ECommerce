@@ -16,14 +16,15 @@ namespace ECommerceMVC.Controllers
 
         public IActionResult Index()
         {
-            var isAdmins = HttpContext.User.Identity.Name;
-
-            var isAdmin = HttpContext.User.IsInRole("Admin");
             return View();
         }
-        [Authorize]
+      //  [Authorize]
         public IActionResult Privacy()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+
+            }
             return View();
         }
 
@@ -32,5 +33,6 @@ namespace ECommerceMVC.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }

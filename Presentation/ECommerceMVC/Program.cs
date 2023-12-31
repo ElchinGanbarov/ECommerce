@@ -5,6 +5,7 @@ using ECommerce.Infrastucture.Filters;
 using ECommerce.Persistence;
 using ECommerce.Persistence.Contexts;
 using ECommerceMVC.Filters;
+using ECommerceMVC.Models;
 using Google;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
@@ -36,13 +37,15 @@ builder.Services.AddControllersWithViews(options =>
 builder.Services
     .AddAuthentication(options =>
     {
-        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultScheme = GoogleDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+        options.DefaultSignInScheme = GoogleDefaults.AuthenticationScheme;
+
     })
     .AddCookie(options =>
     {
-        options.LoginPath = "/Account/Login";
-        options.LogoutPath = "/Account/Logout";
+        options.LoginPath = "/Auth/Login";
+        options.LogoutPath = "/Auth/Logout";
     })
     .AddGoogle(googleoptions =>
     {
@@ -80,7 +83,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 var app = builder.Build();
 
-app.Services.CreateScope().ServiceProvider.GetRequiredService<ECommerceDbContext>().Database.Migrate(); // deploying to prod db migrate
+//app.Services.CreateScope().ServiceProvider.GetRequiredService<ECommerceDbContext>().Database.Migrate(); // deploying to prod db migrate
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -97,6 +100,7 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
 
 // Add a custom route to handle the redirection
 app.UseStatusCodePages(async context =>

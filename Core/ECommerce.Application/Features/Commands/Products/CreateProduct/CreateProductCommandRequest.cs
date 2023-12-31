@@ -7,16 +7,10 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Application.Features.Commands.Products.CreateProduct
 {
-    public  class CreateProductCommandRequest : IRequest<CreateProductCommandResponse>
-    {
-        public  string Name { get; set; }
-        public int Stock { get; set; }
-        public float Price { get; set; }
-    }
 
+    public record CreateProductCommandRequest(string Name,int Stock,float Price) : IRequest<CreateProductCommandResponse>;
 
-
-    public class CreateProductCommandResponse
+    public record CreateProductCommandResponse
     {
 
     }

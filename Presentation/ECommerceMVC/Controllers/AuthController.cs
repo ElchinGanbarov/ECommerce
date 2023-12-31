@@ -29,16 +29,19 @@ namespace ECommerceMVC.Controllers
     {
         readonly IMediator _mediator;
         readonly IMailService _mailService;
+        private readonly ILogger<HomeController> _logger;
 
         private readonly SignInManager<ECommerce.Domain.Entities.Identity.AppUser> _signInManager;
 
         public AuthController(IMediator mediator,
                                IMailService mailService,
-                               SignInManager<ECommerce.Domain.Entities.Identity.AppUser> signInManager)
+                               SignInManager<ECommerce.Domain.Entities.Identity.AppUser> signInManager,
+                               ILogger<HomeController> logger)
         {
             _mediator = mediator;
             _mailService = mailService;
             _signInManager = signInManager;
+            _logger = logger;
         }
         public IActionResult Login()
         {
@@ -86,16 +89,16 @@ namespace ECommerceMVC.Controllers
         [HttpGet]
         public async Task<IActionResult> GoogleLoginCallback(string returnUrl = "/home/index")
         {
-            var result = await HttpContext.AuthenticateAsync(GoogleDefaults.AuthenticationScheme);
+            var authenticationResult = await HttpContext.AuthenticateAsync(GoogleDefaults.AuthenticationScheme);
 
-            if (!result.Succeeded || string.IsNullOrEmpty(result.Principal?.Identity?.Name))
+            if (!authenticationResult.Succeeded || string.IsNullOrEmpty(authenticationResult.Principal?.Identity?.Name))
             {
                 // Handle the login failure (e.g., return to login page or display an error)
                 return RedirectToAction("Login");
             }
 
             // Verify the nonce to protect against replay attacks
-            if (!result.Properties.Items.TryGetValue("nonce", out var nonce) ||
+            if (!authenticationResult.Properties.Items.TryGetValue("nonce", out var nonce) ||
                 !HttpContext.Session.TryGetValue("GoogleLoginNonce", out var storedNonce) ||
                 nonce != Encoding.UTF8.GetString(storedNonce))
             {
@@ -108,25 +111,28 @@ namespace ECommerceMVC.Controllers
 
             // Successful login; you can access the user's information here
 
-            GoogleLoginCommandRequest googleLoginCommandRequest = new GoogleLoginCommandRequest
+            var googleLoginCommandRequest = new GoogleLoginCommandRequest
             {
-                FirstName = result.Principal.FindFirst(ClaimTypes.Name)?.Value,
-                LastName = result.Principal.FindFirst(ClaimTypes.Surname)?.Value,
-                Email = result.Principal.FindFirst(ClaimTypes.Email)?.Value,
-                Name = result.Principal.FindFirst(ClaimTypes.Name)?.Value,
+                FirstName = GetValueFromClaim(authenticationResult.Principal, ClaimTypes.Name),
+                LastName = GetValueFromClaim(authenticationResult.Principal, ClaimTypes.Surname),
+                Email = GetValueFromClaim(authenticationResult.Principal, ClaimTypes.Email),
+                Name = GetValueFromClaim(authenticationResult.Principal, ClaimTypes.Name),
                 Provider = "Google",
-                IdToken = result.Principal.FindFirst(ClaimTypes.NameIdentifier).Value
-
+                IdToken = authenticationResult.Principal.FindFirst(ClaimTypes.NameIdentifier)?.Value
             };
-            GoogleLoginCommandResponse response = await _mediator.Send(googleLoginCommandRequest);
+
+            await _mediator.Send(googleLoginCommandRequest);
 
             // Add your logic for user registration or any other operations here
 
-            // Sign in the user
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, result.Principal);
-
             return Redirect(returnUrl);
         }
+
+        private string GetValueFromClaim(ClaimsPrincipal principal, string claimType)
+        {
+            return principal.FindFirst(claimType)?.Value;
+        }
+
 
         [HttpGet]
         public IActionResult Register()
