@@ -1,9 +1,11 @@
+using Castle.Components.DictionaryAdapter.Xml;
 using ECommerce.Application;
 using ECommerce.Domain.Entities.Identity;
 using ECommerce.Infrastucture;
 using ECommerce.Infrastucture.Filters;
 using ECommerce.Persistence;
 using ECommerce.Persistence.Contexts;
+using ECommerceMVC.Extensions;
 using ECommerceMVC.Filters;
 using ECommerceMVC.Models;
 using Google;
@@ -12,6 +14,7 @@ using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -23,8 +26,10 @@ using static System.Formats.Asn1.AsnWriter;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 //builder.Services.AddControllersWithViews();
+
 
 
 
@@ -66,6 +71,7 @@ builder.Services.AddInfrastructureServices();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer("Admin", options =>
     {
+        options.SaveToken = true;
         options.TokenValidationParameters = new()
         {
             ValidateAudience = true, //Oluþturulacak token deðerini kimlerin/hangi originlerin/sitelerin kullanýcý belirlediðimiz deðerdir. -> www.bilmemne.com
@@ -91,6 +97,12 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+}
+else
+{
+
+    app.ApplyMigrations();
+
 }
 
 app.UseHttpsRedirection();
@@ -131,3 +143,6 @@ app.MapControllerRoute(
 
 
 app.Run();
+
+
+

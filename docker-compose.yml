@@ -1,0 +1,63 @@
+version: '3.4'
+
+services:
+  ecommercemvc:
+    image: ${DOCKER_REGISTRY-}ecommercemvc
+    container_name: products.api
+    build:
+      context: .
+      dockerfile: Presentation/ECommerceMVC/Dockerfile
+    ports:
+     - "5000:5000"
+     - "5001:5001" 
+    networks:
+      - postgres_network 
+
+  postgres:
+      image: postgres
+      container_name: products.database
+      environment:
+         - POSTGRES_DB=EcommerceDB
+         - POSTGRES_USER=postgres
+         - POSTGRES_PASSWORD=postgres
+      volumes:
+         - ./.containers/products-db:/var/lib/postgresql/data
+      ports:
+         - "5432:5432"
+      networks:
+      - postgres_network
+      restart: unless-stopped
+
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@mymail.ru
+      PGADMIN_DEFAULT_PASSWORD: adminpassword
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+
+    ports:
+      - 80:80
+    networks:
+      - postgres_network
+    restart: unless-stopped
+
+
+networks:
+  default:
+    external: true
+    name: my-network
+  postgres_network:
+    driver: bridge
+
+volumes:
+    postgres:
+    pgadmin:
+    ecommercemvc:
+         
+
+
+
+

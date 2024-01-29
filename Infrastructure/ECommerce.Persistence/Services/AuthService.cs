@@ -129,6 +129,7 @@ namespace ECommerce.Persistence.Services
                 Token token = _tokenHandler.CreateAccessToken(exparitonDateTime, user);
                 await _userService.UpdateRefreshTokenAsync(token.RefreshToken, user, token.Expiration, 15);
                 await _signInManager.PasswordSignInAsync(usernameOrEmail, password, false, lockoutOnFailure: false);
+                await _signInManager.SignInAsync(user, true);
 
 
                 return new SuccessDataResult<Token>(token);
