@@ -25,7 +25,7 @@ using ECommerce.Application.Features.Commands.AppUser.LogoutUser;
 
 namespace ECommerceMVC.Controllers
 {
-
+    [Authorize]
     public class AuthController : Controller
     {
         readonly IMediator _mediator;
