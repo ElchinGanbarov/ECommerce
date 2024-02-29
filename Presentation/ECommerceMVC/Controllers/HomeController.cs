@@ -13,11 +13,12 @@ namespace ECommerceMVC.Controllers
         {
             _logger = logger;
         }
+        
         public IActionResult Index()
         {
             return View();
         }
-      //  [Authorize]
+        //[Authorize]
         public IActionResult Privacy()
         {
             if (User.Identity.IsAuthenticated)
