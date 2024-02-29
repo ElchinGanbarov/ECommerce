@@ -15,13 +15,13 @@ services:
 
   postgres:
       image: postgres
-      container_name: products.database
+      container_name: products-db
       environment:
          - POSTGRES_DB=EcommerceDB
          - POSTGRES_USER=postgres
          - POSTGRES_PASSWORD=postgres
       volumes:
-         - ./.containers/products-db:/var/lib/postgresql/data
+         - ./data/postgres:/var/lib/postgresql/data
       ports:
          - "5432:5432"
       networks:
@@ -48,7 +48,7 @@ services:
 networks:
   default:
     external: true
-    name: my-network
+    name: postgres_network
   postgres_network:
     driver: bridge
 
