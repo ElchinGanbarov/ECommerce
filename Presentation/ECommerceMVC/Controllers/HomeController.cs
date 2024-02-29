@@ -13,6 +13,7 @@ namespace ECommerceMVC.Controllers
         {
             _logger = logger;
         }
+
         
         public IActionResult Index()
         {
