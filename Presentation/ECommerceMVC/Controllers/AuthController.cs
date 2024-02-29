@@ -30,7 +30,6 @@ namespace ECommerceMVC.Controllers
         readonly IMediator _mediator;
         readonly IMailService _mailService;
         private readonly ILogger<HomeController> _logger;
-
         private readonly SignInManager<ECommerce.Domain.Entities.Identity.AppUser> _signInManager;
 
         public AuthController(IMediator mediator,
