@@ -1,4 +1,5 @@
 ﻿using ECommerce.Application.Features.Commands.Products.CreateProduct;
+using ECommerce.Application.Features.Queries.GetAllProduct;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,6 +23,13 @@ namespace ECommerceMVC.Controllers
             CreateProductCommandResponse response = await _mediator.Send(createProductCommandRequest);
 
             return View();
+        }
+
+        public async Task<IActionResult> GetAllProduct()
+        {
+            GetAllProductQueryRequest createProductCommandRequest = new GetAllProductQueryRequest();
+            GetAllProductQueryResponse response = await _mediator.Send(createProductCommandRequest);
+            return View(response);
         }
     }
 }

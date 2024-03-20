@@ -13,12 +13,14 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using NpgsqlTypes;
+using System.Globalization;
 using System.Net;
 using System.Security.Claims;
 using System.Text;
@@ -37,6 +39,26 @@ builder.Services.AddControllersWithViews(options =>
 {
     //options.Filters.Add<ValidationFilter>();
     //options.Filters.Add<RolePermissionFilter>();
+}).AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
+
+
+builder.Services.AddLocalization(opt =>
+{
+    opt.ResourcesPath = "Resources";
+});
+
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[]
+    {
+        new CultureInfo("az-Latn-AZ"),
+        new CultureInfo("en-US")
+    };
+
+    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("az-Latn-AZ");
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+
 });
 
 builder.Services
@@ -104,7 +126,7 @@ else
     app.ApplyMigrations();
 
 }
-
+app.UseRequestLocalization();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseSession();

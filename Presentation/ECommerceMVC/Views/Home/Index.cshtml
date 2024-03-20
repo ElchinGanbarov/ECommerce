@@ -57,8 +57,11 @@
 
 
     <vc:product-component title="Sale products"></vc:product-component>
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer localizer
     <!--Basket success dialog-->
+
+  <h1>@localizer["Elchin"]</h1>
     <div id="dialog-basket" title="SUCCESS">
         <p>
             <i class="fa-solid fa-check" style="color: #2c511f;"></i>
@@ -81,4 +84,6 @@
             Item added to wishlist!
         </p>
     </div>
+
+    <a asp-controller="Products" asp-action="GetAllProduct">AllProducts</a>
 </div>
