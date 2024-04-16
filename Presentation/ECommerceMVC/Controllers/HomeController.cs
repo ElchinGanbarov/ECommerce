@@ -1,7 +1,9 @@
 ﻿using ECommerceMVC.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace ECommerceMVC.Controllers
 {
@@ -18,6 +20,11 @@ namespace ECommerceMVC.Controllers
         
         public IActionResult Index()
         {
+            Response.Cookies.Append(
+            CookieRequestCultureProvider.DefaultCookieName,
+          CookieRequestCultureProvider.MakeCookieValue(new RequestCulture("en-US")),
+          new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+      );
             return View();
         }
         //[Authorize]

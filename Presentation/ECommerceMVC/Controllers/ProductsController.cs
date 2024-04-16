@@ -22,12 +22,14 @@ namespace ECommerceMVC.Controllers
             CreateProductCommandRequest createProductCommandRequest = new CreateProductCommandRequest(Name:"Elchin",Stock:1,Price:50);
             CreateProductCommandResponse response = await _mediator.Send(createProductCommandRequest);
 
+            if (!response.Success) return BadRequest(response.Message); 
+
             return View();
         }
 
         public async Task<IActionResult> GetAllProduct()
         {
-            GetAllProductQueryRequest createProductCommandRequest = new GetAllProductQueryRequest();
+            GetAllProductQueryRequest createProductCommandRequest = new GetAllProductQueryRequest(Name:"Apple");
             GetAllProductQueryResponse response = await _mediator.Send(createProductCommandRequest);
             return View(response);
         }

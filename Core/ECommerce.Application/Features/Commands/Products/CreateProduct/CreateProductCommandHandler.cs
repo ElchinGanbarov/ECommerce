@@ -25,7 +25,7 @@ namespace ECommerce.Application.Features.Commands.Products.CreateProduct
         public async Task<CreateProductCommandResponse> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
 
-            await _productWriteRepository.AddAsync(new Product
+           var data =  await _productWriteRepository.AddAsync(new Product
             {
                 Name = request.Name,
                 Price = request.Price,
@@ -33,7 +33,7 @@ namespace ECommerce.Application.Features.Commands.Products.CreateProduct
                 CategoryId = Guid.Parse("c41121ed-b6fb-c9a6-bc9b-574c82929e7e")
             }); ;
             await _productWriteRepository.SaveAsync();
-            return new();
+            return new CreateProductCommandResponse(data,"okay");
         }
 
 

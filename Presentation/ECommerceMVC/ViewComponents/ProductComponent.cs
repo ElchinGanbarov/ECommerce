@@ -16,7 +16,7 @@ namespace ECommerceMVC.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(string title)
         {
-            GetAllProductQueryResponse response = await _mediator.Send(new GetAllProductQueryRequest());
+            GetAllProductQueryResponse response = await _mediator.Send(new GetAllProductQueryRequest(Name: "Apple"));
 
             ViewBag.Title = title;
             return View();

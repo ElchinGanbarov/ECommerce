@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Application.Features.Queries.GetAllProduct
 {
-    public class GetAllProductQueryRequest: IRequest<GetAllProductQueryResponse>
-    {
-        public string Name { get; set; }
-    }
+    public record GetAllProductQueryRequest(string Name): IRequest<GetAllProductQueryResponse>;
+    
 }
