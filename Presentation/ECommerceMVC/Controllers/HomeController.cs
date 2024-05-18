@@ -1,4 +1,6 @@
-﻿using ECommerceMVC.Models;
+﻿using ECommerce.Application.Const;
+using ECommerceMVC.Controllers.Base;
+using ECommerceMVC.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +9,7 @@ using System.Globalization;
 
 namespace ECommerceMVC.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
 
@@ -17,14 +19,10 @@ namespace ECommerceMVC.Controllers
 
         }
 
-        
+        [Route("/{lang:lang}", Order = -1)]
+        [Route("/")]
         public IActionResult Index()
         {
-            Response.Cookies.Append(
-            CookieRequestCultureProvider.DefaultCookieName,
-          CookieRequestCultureProvider.MakeCookieValue(new RequestCulture("en-US")),
-          new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
-      );
             return View();
         }
         //[Authorize]

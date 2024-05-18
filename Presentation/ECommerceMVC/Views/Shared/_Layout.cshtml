@@ -1,4 +1,9 @@
-﻿@{
+﻿@using Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+ @inject IHtmlLocalizer<Translations> localizer
+
+
+@{
     var isAdmin = this.Context.User.IsInRole("ADMIN");
 }
 
@@ -40,6 +45,24 @@
     <div id="navbar ">
         <header class="py-3 mb-3 border-bottom">
             <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
+                <div class="dropdown d-none d-lg-flex">
+                    <button class="btn btn-h-large btn-primary btn-link btn-reverse fw-semibold border-0 dropdown-toggle d-flex align-items-center gap-2 text-decoration-none" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        @localizer[$"Languages.Keys.{ViewContext.RouteData.Values["lang"]?.ToString()?.ToUpperInvariant() ?? "AZ"}"]
+                        @*@(ViewContext.RouteData.Values["lang"]?.ToString()?.ToUpperInvariant() ?? "EN")*@
+                    </button>
+                    <ul class="dropdown-menu flex-column p-3" aria-labelledby="dropdownMenuButton1">
+                        <li>
+                            <a class="dropdown-item text-body text-decoration-none d-flex align-items-center" href=@Url.Action(ViewContext.RouteData.Values["Action"]?.ToString(), ViewContext.RouteData.Values["Controller"]?.ToString(), new {lang="en"})>
+                                @localizer["Languages.Keys.EN"]
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item text-body text-decoration-none d-flex align-items-center" href=@Url.Action(ViewContext.RouteData.Values["Action"]?.ToString(), ViewContext.RouteData.Values["Controller"]?.ToString(), new {lang="az"})>
+                                @localizer["Languages.Keys.AZ"]
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none">
                     Logo <!-- svg kimi logo -->
                 </a>
@@ -82,7 +105,7 @@
     </div>
     <div id="header">
         <h1 id="main-header">
-            the Beauty in Imperfections
+            @localizer["Text"]
         </h1>
     </div>
     <div class="b-example-divider"></div>

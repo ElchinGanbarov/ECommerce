@@ -1,4 +1,7 @@
-﻿    <!--Body-->
+﻿@using Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+ @inject IHtmlLocalizer<Translations> localizer
+<!--Body-->
 <div id="body" class="mb-5">
     <!--Popular Categories-->
     <section class="about-cards-section">
@@ -53,15 +56,19 @@
         </div>
     </section>
 
+    @{
+        var list = new List<int>
+        {
+            1,2,3,4
+        };
+    }
+    <partial name="~/Views/Shared/Form/_Tariff.cshtml" model="list"/>
     <vc:product-component title="Latest products"></vc:product-component>
 
 
     <vc:product-component title="Sale products"></vc:product-component>
-@using Microsoft.AspNetCore.Mvc.Localization
-@inject IViewLocalizer localizer
-    <!--Basket success dialog-->
 
-  <h1>@localizer["Elchin"]</h1>
+    <!--Basket success dialog-->
     <div id="dialog-basket" title="SUCCESS">
         <p>
             <i class="fa-solid fa-check" style="color: #2c511f;"></i>

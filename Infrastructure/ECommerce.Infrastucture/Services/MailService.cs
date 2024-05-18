@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System.Web;
 using ECommerce.Application.Helpers;
+using ECommerce.Application.Const;
 
 namespace ECommerce.Infrastucture.Services
 {
@@ -37,10 +38,10 @@ namespace ECommerce.Infrastucture.Services
 				mail.To.Add(to);
 			mail.Subject = subject;
 			mail.Body = body;
-			mail.From = new(_configuration["Mail:Username"], "DG Product", System.Text.Encoding.UTF8);
+			mail.From = new(address: Config.Mail.Username, "DG Product", System.Text.Encoding.UTF8);
 
 			SmtpClient smtp = new("smtp.gmail.com", 587);
-			smtp.Credentials = new NetworkCredential(_configuration["Mail:Username"], _configuration["Mail:Password"]);
+			smtp.Credentials = new NetworkCredential(Config.Mail.Username, Config.Mail.Password);
 			smtp.Port = 587;
 			smtp.EnableSsl = true;
 			await smtp.SendMailAsync(mail);

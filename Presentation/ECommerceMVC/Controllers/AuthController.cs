@@ -156,7 +156,7 @@ namespace ECommerceMVC.Controllers
         [HttpGet("auth/updatepassword/{userId}")]
         public async Task<IActionResult> UpdatePassword([FromRoute] string userId)
         {
-            GetUserByIdQueryRequest getUserByIdQueryRequest = new GetUserByIdQueryRequest { UserId = userId };
+            GetUserByIdQueryRequest getUserByIdQueryRequest = new GetUserByIdQueryRequest(userId);
             GetUserByIdQueryResponse getUserByIdQueryHandler = await _mediator.Send(getUserByIdQueryRequest);
             if (!getUserByIdQueryHandler.Result) { return NotFound("User not Found"); }
 

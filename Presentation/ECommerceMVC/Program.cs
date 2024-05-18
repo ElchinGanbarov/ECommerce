@@ -1,5 +1,6 @@
 using Castle.Components.DictionaryAdapter.Xml;
 using ECommerce.Application;
+using ECommerce.Application.Const;
 using ECommerce.Domain.Entities.Identity;
 using ECommerce.Infrastucture;
 using ECommerce.Infrastucture.Filters;
@@ -7,6 +8,7 @@ using ECommerce.Persistence;
 using ECommerce.Persistence.Contexts;
 using ECommerceMVC.Extensions;
 using ECommerceMVC.Filters;
+using ECommerceMVC.MIddlewares;
 using ECommerceMVC.Models;
 using Google;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -34,34 +36,44 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddControllersWithViews();
 
 
+builder.Configuration
+             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+             .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development"}.json", optional: true, reloadOnChange: true);
 
 
-builder.Services.AddControllersWithViews(options =>
+builder.Services.AddControllersWithViews()
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
+
+
+
+builder.Services.Configure<RouteOptions>(options =>
 {
-    //options.Filters.Add<ValidationFilter>();
-    //options.Filters.Add<RolePermissionFilter>();
-}).AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
-
+    options.ConstraintMap.Add("lang", typeof(LanguageRouteConstraint));
+});
 
 builder.Services.AddLocalization(opt =>
 {
     opt.ResourcesPath = "Resources";
 });
 
-builder.Services.Configure<RequestLocalizationOptions>(options =>
-{
-    var supportedCultures = new[]
-    {
-        new CultureInfo("az-Latn-AZ"),
-        new CultureInfo("en-US")
-    };
 
-    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("az-Latn-AZ");
-    options.SupportedCultures = supportedCultures;
-    options.SupportedUICultures = supportedCultures;
+builder.Services.AddRazorPages()
+    .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
 
-});
+//builder.Services.Configure<RequestLocalizationOptions>(options =>
+//{
+//    var supportedCultures = new[]
+//    {
+//        new CultureInfo("en-US"),
+//        new CultureInfo("az-Latn-AZ")
+//    };
 
+//    options.SupportedCultures = supportedCultures;
+//    options.SupportedUICultures = supportedCultures;
+//    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en-US");
+
+//});
+builder.Configuration.GetSection(nameof(Config.Mail)).Bind(Config.Mail);
 builder.Services
     .AddAuthentication(options =>
     {
@@ -147,20 +159,15 @@ app.UseStatusCodePages(async context =>
     var response = context.HttpContext.Response;
 
     if (response.StatusCode == (int)HttpStatusCode.Unauthorized)
-    // you may also check requests path to do this only for specific methods       
-    // && request.Path.Value.StartsWith("/specificPath")
-
-    {
         response.Redirect("/account/login");
-    }
 });
 
-app.UseMiddleware<ExceptionHandlerMiddleware>();
+app.UseExceptionHandlerMiddleware();
 
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    name: "LocalizedDefault",
+    pattern: "{lang:lang=en}/{controller}/{action}/{id?}");
 
 app.MapControllerRoute(
                     name: "Area",
@@ -169,6 +176,4 @@ app.MapControllerRoute(
 
 
 app.Run();
-
-
 
