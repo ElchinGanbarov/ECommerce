@@ -1,33 +1,17 @@
-using Castle.Components.DictionaryAdapter.Xml;
 using ECommerce.Application;
 using ECommerce.Application.Const;
-using ECommerce.Domain.Entities.Identity;
 using ECommerce.Infrastucture;
-using ECommerce.Infrastucture.Filters;
 using ECommerce.Persistence;
-using ECommerce.Persistence.Contexts;
 using ECommerceMVC.Extensions;
-using ECommerceMVC.Filters;
 using ECommerceMVC.MIddlewares;
-using ECommerceMVC.Models;
-using Google;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using NpgsqlTypes;
 using System.Globalization;
 using System.Net;
 using System.Security.Claims;
 using System.Text;
-using static System.Formats.Asn1.AsnWriter;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -60,19 +44,22 @@ builder.Services.AddLocalization(opt =>
 builder.Services.AddRazorPages()
     .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
 
-//builder.Services.Configure<RequestLocalizationOptions>(options =>
-//{
-//    var supportedCultures = new[]
-//    {
-//        new CultureInfo("en-US"),
-//        new CultureInfo("az-Latn-AZ")
-//    };
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[]
+    {
+        new CultureInfo("en-US"),
+        new CultureInfo("az-Latn-AZ")
+    };
 
-//    options.SupportedCultures = supportedCultures;
-//    options.SupportedUICultures = supportedCultures;
-//    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en-US");
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en-US");
 
-//});
+});
+
+
+
 builder.Configuration.GetSection(nameof(Config.Mail)).Bind(Config.Mail);
 builder.Services
     .AddAuthentication(options =>
@@ -101,6 +88,9 @@ builder.Services.AddHttpContextAccessor();//Client'tan gelen request neticvesind
 builder.Services.AddPersistenceServices();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices();
+builder.Services.AddAntiforgery(options => options.HeaderName = "XSRF-TOKEN");
+
+builder.Services.AddMemoryCache();
 
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -158,8 +148,6 @@ app.UseStatusCodePages(async context =>
     var request = context.HttpContext.Request;
     var response = context.HttpContext.Response;
 
-    if (response.StatusCode == (int)HttpStatusCode.Unauthorized)
-        response.Redirect("/account/login");
 });
 
 app.UseExceptionHandlerMiddleware();
@@ -168,6 +156,10 @@ app.UseExceptionHandlerMiddleware();
 app.MapControllerRoute(
     name: "LocalizedDefault",
     pattern: "{lang:lang=en}/{controller}/{action}/{id?}");
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
                     name: "Area",

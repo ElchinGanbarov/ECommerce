@@ -19,7 +19,7 @@ namespace ECommerceMVC.ViewComponents
             GetAllProductQueryResponse response = await _mediator.Send(new GetAllProductQueryRequest(Name: "Apple"));
 
             ViewBag.Title = title;
-            return View();
+            return View(response);
         }
 
     }

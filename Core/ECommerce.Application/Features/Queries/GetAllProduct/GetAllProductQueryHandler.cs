@@ -1,5 +1,10 @@
-﻿using ECommerce.Application.Repositories.Products;
+﻿using ECommerce.Application.Extensions;
+using ECommerce.Application.Repositories.Products;
+using ECommerce.Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +16,12 @@ namespace ECommerce.Application.Features.Queries.GetAllProduct
     internal class GetAllProductQueryHandler : IRequestHandler<GetAllProductQueryRequest, GetAllProductQueryResponse>
     {
         private readonly IProductReadRepository _productReadRepository;
-        public GetAllProductQueryHandler(IProductReadRepository productReadRepository)
+
+        private readonly IMemoryCache _cache;
+        public GetAllProductQueryHandler(IProductReadRepository productReadRepository, IMemoryCache cache)
         {
             _productReadRepository = productReadRepository;
+            _cache = cache;
         }
 
         public async Task<GetAllProductQueryResponse> Handle(GetAllProductQueryRequest request, CancellationToken cancellationToken)
@@ -21,7 +29,23 @@ namespace ECommerce.Application.Features.Queries.GetAllProduct
 
             var products =  _productReadRepository.GetAll();
 
+
+
+            var model = _cache.GetOrCreateAsync($"Test", entry =>
+            {
+                return GetAllProduct();
+            }, false, 50, 50);
+
+
             return  new GetAllProductQueryResponse(products.ToList(), true, "okay");
+        }
+
+
+        private async Task<List<Product>> GetAllProduct()
+        {
+            var products =  _productReadRepository.GetAll().ToList();
+            return products;
+
         }
 
 

@@ -1,7 +1,13 @@
-﻿
+﻿@model ECommerce.Application.Features.Queries.GetAllProduct.GetAllProductQueryResponse
 <div id="latest-products">
 
     <h2 class="text-center mt-3 mb-3">@ViewBag.Title</h2>
+
+
+    @foreach (var item in Model.Data)
+    {
+        <h1>@item.Name</h1>
+    }
 
     <div class="container">
         <div id="content" class="my-5">
