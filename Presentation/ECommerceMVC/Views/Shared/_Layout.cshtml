@@ -45,43 +45,49 @@
     <div id="navbar ">
         <header class="py-3 mb-3 border-bottom">
             <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
+                <!-- Language Dropdown -->
                 <div class="dropdown d-none d-lg-flex">
-                    <button class="btn btn-h-large btn-primary btn-link btn-reverse fw-semibold border-0 dropdown-toggle d-flex align-items-center gap-2 text-decoration-none" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="dropdown-toggle d-flex align-items-center gap-2 text-decoration-none rounded-pill"
+                            type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
+                            style=" font-size: 0.85rem; height: auto; background-color: #99ca3c; color: white; border: 1px solid; padding: 0.5rem 1rem;">
                         @localizer[$"Languages.Keys.{ViewContext.RouteData.Values["lang"]?.ToString()?.ToUpperInvariant() ?? "AZ"}"]
-                        @*@(ViewContext.RouteData.Values["lang"]?.ToString()?.ToUpperInvariant() ?? "EN")*@
                     </button>
+
                     <ul class="dropdown-menu flex-column p-3" aria-labelledby="dropdownMenuButton1">
                         <li>
-                            <a class="dropdown-item text-body text-decoration-none d-flex align-items-center" href=@Url.Action(ViewContext.RouteData.Values["Action"]?.ToString(), ViewContext.RouteData.Values["Controller"]?.ToString(), new {lang="en"})>
+                            <a class="dropdown-item text-body text-decoration-none d-flex align-items-center"
+                               href=@Url.Action(ViewContext.RouteData.Values["Action"]?.ToString(), ViewContext.RouteData.Values["Controller"]?.ToString(), new { lang = "en" })>
                                 @localizer["Languages.Keys.EN"]
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item text-body text-decoration-none d-flex align-items-center" href=@Url.Action(ViewContext.RouteData.Values["Action"]?.ToString(), ViewContext.RouteData.Values["Controller"]?.ToString(), new {lang="az"})>
+                            <a class="dropdown-item text-body text-decoration-none d-flex align-items-center"
+                               href=@Url.Action(ViewContext.RouteData.Values["Action"]?.ToString(), ViewContext.RouteData.Values["Controller"]?.ToString(), new { lang = "az" })>
                                 @localizer["Languages.Keys.AZ"]
                             </a>
                         </li>
                     </ul>
                 </div>
-                <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none">
-                    Logo <!-- svg kimi logo -->
-                </a>
-                <div class="d-flex align-items-center">
-                    <form class="w-100 me-3">
-                        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                <!-- Search and User Section -->
+                <div class="d-flex justify-content-end">
+                    <!-- Search Bar -->
+                    <form>
+                        <input type="search" class="form-control rounded-pill" placeholder="Search..." aria-label="Search"
+                               style="border: 1px solid #ccc; padding: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
                     </form>
+                    <!-- Authentication Links -->
                     @if (!this.Context.User.Identity.IsAuthenticated)
                     {
-                        <a class="dropdown-item" asp-area="" asp-controller="auth" asp-action="login">Login</a>
-
+                        <a class="btn btn-outline-primary px-4 rounded-pill" asp-area="" asp-controller="auth" asp-action="login">Login</a>
                     }
                     else
                     {
+                        <!-- User Profile Dropdown -->
                         <div class="flex-shrink-0 dropdown">
                             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32"
-                                     class="rounded-circle">
+                                <img src="https://github.com/mdo.png" alt="User Avatar" width="32" height="32"
+                                     class="rounded-circle" style="border: 1px solid #ccc;">
                             </a>
                             <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
@@ -91,17 +97,20 @@
                                 </li>
                                 @if (isAdmin)
                                 {
-                                    <li><a class="dropdown-item" asp-area="admins" asp-controller="dashboard" asp-action="index">Admin Panel</a></li>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="admins" asp-controller="dashboard" asp-action="index">Admin Panel</a>
+                                    </li>
                                 }
-                                <li><a class="dropdown-item" asp-area="" asp-controller="auth" asp-action="logout">Sign out</a></li>
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-controller="auth" asp-action="logout">Sign out</a>
+                                </li>
                             </ul>
                         </div>
                     }
-
-
                 </div>
             </div>
         </header>
+
     </div>
     <div id="header">
         <h1 id="main-header">
