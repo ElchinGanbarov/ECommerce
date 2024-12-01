@@ -10,8 +10,6 @@ namespace ECommerceMVC.Controllers.Base
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             string lang = context.RouteData.Values["lang"]?.ToString() ?? string.Empty;
-            ViewData["LanguageCode"] = lang;
-
             var cultureName = CultureHelper.TryGetCulture(lang);
 
 
