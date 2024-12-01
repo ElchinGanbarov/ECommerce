@@ -1,11 +1,14 @@
 ﻿using ECommerce.Application.Features.Commands.Products.CreateProduct;
 using ECommerce.Application.Features.Queries.GetAllProduct;
+using ECommerceMVC.Controllers.Base;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Globalization;
 
 namespace ECommerceMVC.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductsController : BaseController
     {
 
         readonly IMediator _mediator;
@@ -17,6 +20,7 @@ namespace ECommerceMVC.Controllers
             _mediator = mediator;
             _logger = logger;
         }
+  
         public async Task<IActionResult> Index()
         {
             CreateProductCommandRequest createProductCommandRequest = new CreateProductCommandRequest(Name:"Elchin",Stock:1,Price:50);
@@ -26,7 +30,6 @@ namespace ECommerceMVC.Controllers
 
             return View();
         }
-
         public async Task<IActionResult> GetAllProduct()
         {
             GetAllProductQueryRequest createProductCommandRequest = new GetAllProductQueryRequest(Name:"Apple");

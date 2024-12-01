@@ -91,6 +91,8 @@
             Item added to wishlist!
         </p>
     </div>
+    @localizer["Text"]
+    @localizer["Elchin"]
 
-    <a asp-controller="Products" asp-action="GetAllProduct">AllProducts</a>
+    <a asp-controller="Products" asp-action="GetAllProduct" asp-route-lang="@ViewContext.RouteData.Values["lang"]">AllProducts</a>
 </div>

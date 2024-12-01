@@ -54,7 +54,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 
     options.SupportedCultures = supportedCultures;
     options.SupportedUICultures = supportedCultures;
-    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en-US");
+    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("az-Latn-AZ");
 
 });
 
@@ -155,7 +155,7 @@ app.UseExceptionHandlerMiddleware();
 
 app.MapControllerRoute(
     name: "LocalizedDefault",
-    pattern: "{lang:lang=en}/{controller}/{action}/{id?}");
+    pattern: "{lang:lang=az}/{controller}/{action}/{id?}");
 
 app.MapControllerRoute(
     name: "default",

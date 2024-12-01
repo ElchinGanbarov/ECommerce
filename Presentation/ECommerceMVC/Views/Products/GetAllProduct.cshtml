@@ -1,5 +1,10 @@
 ﻿@model ECommerce.Application.Features.Queries.GetAllProduct.GetAllProductQueryResponse
+@using Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<Translations> localizer
+@localizer["Text1"]
 
+@localizer["Text"]
 @foreach (var item in Model.Data)
 {
     <h1>@item.Name</h1>

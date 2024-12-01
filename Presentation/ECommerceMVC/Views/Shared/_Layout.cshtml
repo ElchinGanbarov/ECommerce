@@ -1,12 +1,10 @@
 ﻿@using Localization
 @using Microsoft.AspNetCore.Mvc.Localization
- @inject IHtmlLocalizer<Translations> localizer
-
+@inject IHtmlLocalizer<Translations> localizer
 
 @{
     var isAdmin = this.Context.User.IsInRole("ADMIN");
 }
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,42 +15,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>@ViewData["Title"] - ECommerceMVC</title>
+
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    @RenderSection("Head", required: false)
-    <link href="~/sb-admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="~/lib/jquery-toast-plugin/jquery.toast.min.css">
 
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/ECommerceMVC.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" type="text/css" href="~/lib/jquery-ui/jquery-ui.min.css">
-
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="~/fontawesome-free-6.4.2-web/css/all.min.css">
-    <link rel="stylesheet" href="~/fontawesome-free-6.4.2-web/css/regular.min.css">
-    <link rel="stylesheet" href="~/fontawesome-free-6.4.2-web/css/solid.min.css">
 
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/nav-style.css">
     <link rel="stylesheet" href="~/css/footer-style.css">
-    <link rel="stylesheet" href="~/css/card-style.css">
-    <link rel="stylesheet" href="~/css/filters-style.css">
-    <link rel="stylesheet" href="~/css/footer-style.css">
     <link rel="stylesheet" href="~/css/common-style.css">
-    <title>Home Page</title>
+
+    @RenderSection("Head", required: false)
 </head>
 
 <body>
-
     <!--Navbar-->
-    <div id="navbar ">
+    <div id="navbar">
         <header class="py-3 mb-3 border-bottom">
             <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
                 <!-- Language Dropdown -->
                 <div class="dropdown d-none d-lg-flex">
                     <button class="dropdown-toggle d-flex align-items-center gap-2 text-decoration-none rounded-pill"
                             type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
-                            style=" font-size: 0.85rem; height: auto; background-color: #99ca3c; color: white; border: 1px solid; padding: 0.5rem 1rem;">
+                            style="font-size: 0.85rem; height: auto; background-color: #99ca3c; color: white; border: 1px solid; padding: 0.5rem 1rem;">
                         @localizer[$"Languages.Keys.{ViewContext.RouteData.Values["lang"]?.ToString()?.ToUpperInvariant() ?? "AZ"}"]
                     </button>
-
                     <ul class="dropdown-menu flex-column p-3" aria-labelledby="dropdownMenuButton1">
                         <li>
                             <a class="dropdown-item text-body text-decoration-none d-flex align-items-center"
@@ -110,23 +100,17 @@
                 </div>
             </div>
         </header>
-
     </div>
-    <div id="header">
-        <h1 id="main-header">
-            @localizer["Text"]
-        </h1>
-    </div>
-    <div class="b-example-divider"></div>
 
-
+    <!-- Main Content -->
     <div class="container">
         <main role="main" class="pb-3">
+            
             @RenderBody()
         </main>
     </div>
 
-    <!--footer-->
+    <!-- Footer -->
     <div id="footer">
         <div class="container">
             <footer class="py-5">
@@ -139,7 +123,6 @@
                             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About Us</a></li>
                         </ul>
                     </div>
-
                     <div class="col-6 col-md-2 mb-3">
                         <h5>Help</h5>
                         <ul class="nav flex-column">
@@ -147,60 +130,26 @@
                             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQ</a></li>
                         </ul>
                     </div>
-
-
-                    <div class="col-6 col-md-2 mb-3">
-                        <h5>Payment</h5>
-                        <ul class="nav flex-column">
-                            <!--Odenis kartlari-->
-                            <li class="nav-item mb-2"><a href="#" class="nav-link fa-2x p-0 text-muted"><i class="fa-brands fa-paypal" style="color: #fb774b;"></i></a></li>
-
-                        </ul>
-                    </div>
-
-
                     <div class="col-md-5 offset-md-1 mb-3">
                         <form>
                             <h5>Subscribe to our newsletter</h5>
-                            <p>Monthly digest of what's new and exciting from us.</p>
                             <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                                <label for="newsletter1" class="visually-hidden">Email address</label>
                                 <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-                                <button class="btn btn-primary" id="email-subscribe-btn" type="button">Subscribe</button>
+                                <button class="btn btn-primary" type="button">Subscribe</button>
                             </div>
                         </form>
                     </div>
                 </div>
-
                 <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
                     <p>&copy; 2022 Company Name, Inc. All rights reserved.</p>
-                    <ul class="list-unstyled d-flex">
-                        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter" /></svg></a></li>
-                        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram" /></svg></a></li>
-                        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook" /></svg></a></li>
-                    </ul>
                 </div>
             </footer>
         </div>
     </div>
 
-
-    <script src="https://kit.fontawesome.com/1cc93dc038.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/lib/jquery-toast-plugin/jquery.toast.min.js"></script>
-    <script src="~/lib/js-cookie/js.cookie.min.js"></script>
-    <script src="~/js/customer.js" asp-append-version="true"></script>
-    <script src="~/fontawesome-free-6.4.2-web/js/fontawesome.min.js"></script>
-    <script src="~/js/cards-scripts.js"></script>
-    <script src="~/js/home-filters.js"></script>
-    <script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
-
+    <!-- Required Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
