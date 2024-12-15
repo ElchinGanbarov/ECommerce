@@ -1,6 +1,6 @@
 ﻿@using Localization
 @using Microsoft.AspNetCore.Mvc.Localization
- @inject IHtmlLocalizer<Translations> localizer
+ @inject IViewLocalizer localizer
 <!--Body-->
 <div id="body" class="mb-5">
     <!--Popular Categories-->
@@ -56,13 +56,13 @@
         </div>
     </section>
 
-    @{
+@*     @{
         var list = new List<int>
         {
             1,2,3,4
         };
     }
-    <partial name="~/Views/Shared/Form/_Tariff.cshtml" model="list"/>
+    <partial name="~/Views/Shared/Form/_Tariff.cshtml" model="list"/> *@
     <vc:product-component title="Latest products"></vc:product-component>
 
 
