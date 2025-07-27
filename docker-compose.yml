@@ -14,7 +14,7 @@ services:
       - postgres_network 
 
   postgres:
-      image: postgres
+      image: postgres:16
       container_name: products-db
       environment:
          - POSTGRES_DB=EcommerceDB
@@ -56,8 +56,5 @@ volumes:
     postgres:
     pgadmin:
     ecommercemvc:
-         
-
-
 
 

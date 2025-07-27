@@ -8,6 +8,7 @@ using System.Globalization;
 
 namespace ECommerceMVC.Controllers
 {
+    [Authorize]
     public class ProductsController : BaseController
     {
 
@@ -15,10 +16,9 @@ namespace ECommerceMVC.Controllers
         readonly ILogger<ProductsController> _logger;
 
         public ProductsController(IMediator mediator,
-                                 ILogger<ProductsController> logger )
+                                 ILogger<ProductsController> logger ) : base(logger)
         {
             _mediator = mediator;
-            _logger = logger;
         }
   
         public async Task<IActionResult> Index()
@@ -32,7 +32,7 @@ namespace ECommerceMVC.Controllers
         }
         public async Task<IActionResult> GetAllProduct()
         {
-            GetAllProductQueryRequest createProductCommandRequest = new GetAllProductQueryRequest(Name:"Apple");
+            GetAllProductQueryRequest createProductCommandRequest = new GetAllProductQueryRequest("AllProduct");
             GetAllProductQueryResponse response = await _mediator.Send(createProductCommandRequest);
             return View(response);
         }

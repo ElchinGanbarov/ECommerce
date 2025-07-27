@@ -26,18 +26,13 @@ namespace ECommerce.Application.Features.Queries.GetAllProduct
 
         public async Task<GetAllProductQueryResponse> Handle(GetAllProductQueryRequest request, CancellationToken cancellationToken)
         {
-
-            var products =  _productReadRepository.GetAll();
-
-
-
-            var model = _cache.GetOrCreateAsync($"Test", entry =>
+            var model = await _cache.GetOrCreateAsync(request.cacheKey, entry =>
             {
                 return GetAllProduct();
             }, false, 50, 50);
 
 
-            return  new GetAllProductQueryResponse(products.ToList(), true, "okay");
+            return  new GetAllProductQueryResponse(model, true, "okay");
         }
 
 
@@ -45,7 +40,6 @@ namespace ECommerce.Application.Features.Queries.GetAllProduct
         {
             var products =  _productReadRepository.GetAll().ToList();
             return products;
-
         }
 
 

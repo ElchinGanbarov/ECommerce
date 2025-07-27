@@ -1,46 +1,12 @@
-﻿using ECommerce.Application;
-using ECommerce.Application.Abstractions.Services;
-using ECommerce.Application.CustomAttributes;
-using ECommerce.Application.Features.Commands.AppUser.AssignRoleToUser;
-using ECommerce.Application.Features.Commands.AppUser.LoginUser;
-using ECommerce.Application.Features.Commands.CreateUser;
-using ECommerce.Application.Features.Commands.UpdatePassword;
-using ECommerce.Application.Features.Queries.AppUser.GetAllUsers;
-using ECommerce.Application.Features.Queries.AppUser.GetRolesToUser;
-using MediatR;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.Google;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
-using System.Text;
-using Microsoft.AspNetCore.Identity;
-using ECommerce.Application.Features.Commands.AppUser.GoogleLogin;
-using ECommerce.Application.Features.Commands.AppUser.PasswordReset;
-using ECommerce.Application.Features.Commands.AppUser.RefreshTokenLogin;
-using ECommerce.Application.Features.Queries.AppUser.GetUserById;
-using Microsoft.AspNetCore.Http;
-using ECommerce.Application.Features.Commands.AppUser.LogoutUser;
-
-namespace ECommerceMVC.Controllers
+﻿namespace ECommerceMVC.Controllers
 {
     public class AuthController : Controller
     {
         readonly IMediator _mediator;
-        readonly IMailService _mailService;
-        private readonly ILogger<HomeController> _logger;
-        private readonly SignInManager<ECommerce.Domain.Entities.Identity.AppUser> _signInManager;
 
-        public AuthController(IMediator mediator,
-                               IMailService mailService,
-                               SignInManager<ECommerce.Domain.Entities.Identity.AppUser> signInManager,
-                               ILogger<HomeController> logger)
+        public AuthController(IMediator mediator)
         {
             _mediator = mediator;
-            _mailService = mailService;
-            _signInManager = signInManager;
-            _logger = logger;
         }
         public IActionResult Login()
         {

@@ -21,7 +21,7 @@ namespace ECommerce.Persistence
                 }
                 catch
                 {
-                    configurationManager.AddJsonFile("appsettings.Production.json");
+                    configurationManager.AddJsonFile("appsettings.json");
                 }
 
                 return configurationManager.GetConnectionString("PostgreSQL");
