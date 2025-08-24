@@ -21,7 +21,6 @@ namespace ECommerceMVC.Areas.Admins.Controllers
     [Route("[area]/[controller]/[action]")]
     public class DashboardController : BaseController
     {
-        private readonly ILogger<DashboardController> _logger;
         public DashboardController(ILogger<DashboardController> logger) : base(logger)
         {
                 

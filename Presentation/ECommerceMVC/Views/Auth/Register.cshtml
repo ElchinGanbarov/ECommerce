@@ -1,67 +1,135 @@
 ﻿@model ECommerce.Application.Features.Commands.CreateUser.CreateUserCommandRequest
+@using ECommerceMVC.Resources
+@using Microsoft.Extensions.Localization
+@using Localization
+@inject IHtmlLocalizer<Translations> Localizer
 
+@{
+    ViewData["Title"] = Localizer["Auth.CreateAccount"];
+}
 
-<section class="vh-100" style="background-color: #eee;">
-    <div class="container h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-lg-12 col-xl-11">
-                <div class="card text-black" style="border-radius: 25px;">
-                    <div class="card-body p-md-5">
-                        <div class="row justify-content-center">
-                            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+<link rel="stylesheet" href="~/css/auth-styles.css" asp-append-version="true" />
 
-                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
-
-                                <form class="mx-1 mx-md-4" asp-action="register" method="post">
-
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <label class="form-label" asp-for="NameSurname">Your Name</label>
-                                            <input type="text" asp-for="NameSurname" required class="form-control" />
-                                            <span style="color:red" asp-validation-for="NameSurname"></span>
-
-                                        </div>
-                                    </div>
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <label class="form-label" asp-for="Email">Your Email</label>
-                                            <input type="email" asp-for="Email" required class="form-control" />
-                                            <span style="color:red" asp-validation-for="Email"></span>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <label class="form-label" asp-for="Password">Password</label>
-                                            <input type="password" asp-for="Password" required class="form-control" />
-                                            <span style="color:red" asp-validation-for="Password"></span>
-
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="submit" class="btn btn-primary btn-lg">Register</button>
-                                    </div>
-                                </form>
-
-                            </div>
-                            <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                                     class="img-fluid" alt="Sample image">
-
-                            </div>
+<div class="register-container">
+    <div class="register-wrapper">
+        <div class="register-card">
+            <div class="register-header">
+                <h2>@Localizer["Auth.CreateAccount"]</h2>
+                <p>@Localizer["Auth.JoinUsAndStartShopping"]</p>
+            </div>
+            
+            <form class="register-form" asp-action="Register" method="post" id="register-form">
+                @Html.AntiForgeryToken()
+                
+                <div class="form-group">
+                    <label asp-for="NameSurname" class="form-label">
+                        <i class="fas fa-user"></i> @Localizer["Auth.FullName"]
+                    </label>
+                    <input asp-for="NameSurname" type="text" class="form-control" required placeholder="@Localizer["Auth.EnterFullName"]" autocomplete="name">
+                    <span class="validation-error" asp-validation-for="NameSurname"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="Email" class="form-label">
+                        <i class="fas fa-envelope"></i> @Localizer["Auth.EmailAddress"]
+                    </label>
+                    <input asp-for="Email" type="email" class="form-control" required placeholder="@Localizer["Auth.EnterEmailAddress"]" autocomplete="email">
+                    <span class="validation-error" asp-validation-for="Email"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="Password" class="form-label">
+                        <i class="fas fa-lock"></i> @Localizer["Auth.CreateStrongPassword"]
+                    </label>
+                    <div class="password-input-group">
+                        <input asp-for="Password" type="password" class="form-control" required placeholder="@Localizer["Auth.CreateStrongPassword"]" autocomplete="new-password" id="register-password">
+                        <button type="button" class="password-toggle">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="password-strength">
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="strength-fill"></div>
+                        </div>
+                        <span class="strength-text" id="strength-text">@Localizer["Password.PasswordStrength"]</span>
+                    </div>
+                    <span class="validation-error" asp-validation-for="Password"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword" class="form-label">
+                        <i class="fas fa-lock"></i> @Localizer["Auth.ConfirmPassword"]
+                    </label>
+                    <div class="password-input-group">
+                        <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required placeholder="@Localizer["Auth.ConfirmYourPassword"]" autocomplete="new-password">
+                        <button type="button" class="password-toggle">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <span class="validation-error" id="confirmPasswordError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label class="checkbox-container terms-checkbox">
+                        <input type="checkbox" id="agreeTerms" required>
+                        <span class="checkmark"></span>
+                        @Localizer["Auth.AgreeToTerms"] <a href="#" class="link-primary">@Localizer["Auth.TermsOfService"]</a> @Localizer["Auth.Or"] <a href="#" class="link-primary">@Localizer["Auth.PrivacyPolicy"]</a>
+                    </label>
+                    <span class="validation-error" id="termsError"></span>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-register">
+                    <i class="fas fa-user-plus"></i> @Localizer["Auth.CreateAccountButton"]
+                </button>
+                
+                <div class="divider">
+                    <span>@Localizer["Auth.Or"]</span>
+                </div>
+                
+                <div class="social-login">
+                    <a class="btn btn-google" asp-action="ExternalLogin" asp-route-provider="Google">
+                        <i class="fab fa-google"></i> @Localizer["Auth.SignUpWithGoogle"]
+                    </a>
+                </div>
+                
+                <div class="login-link">
+                    <p>@Localizer["Auth.AlreadyHaveAccount"] <a asp-action="Login" class="link-primary">@Localizer["Auth.SignInHere"]</a></p>
+                </div>
+            </form>
+        </div>
+        
+        <div class="register-illustration">
+            <div class="illustration-content">
+                <h3>@Localizer["Auth.JoinOurCommunity"]</h3>
+                <p>@Localizer["Auth.GetAccessToExclusiveDeals"]</p>
+                <div class="benefits">
+                    <div class="benefit">
+                        <i class="fas fa-gift"></i>
+                        <div class="benefit-content">
+                            <h4>@Localizer["Auth.ExclusiveDeals"]</h4>
+                            <p>@Localizer["Auth.GetAccessToMemberOnlyDiscounts"]</p>
+                        </div>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-heart"></i>
+                        <div class="benefit-content">
+                            <h4>@Localizer["Auth.Wishlist"]</h4>
+                            <p>@Localizer["Auth.SaveYourFavoriteItems"]</p>
+                        </div>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-truck"></i>
+                        <div class="benefit-content">
+                            <h4>@Localizer["Auth.FastShipping"]</h4>
+                            <p>@Localizer["Auth.FreeShippingOnOrdersOver50"]</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
 
-@section Head{
-    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
+@section Scripts {
+    <script src="~/js/auth-scripts.js" asp-append-version="true"></script>
 }

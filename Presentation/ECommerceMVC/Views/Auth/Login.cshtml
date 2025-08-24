@@ -1,132 +1,128 @@
 ﻿@model ECommerce.Application.Features.Commands.AppUser.LoginUser.LoginUserCommandRequest
+@using ECommerceMVC.Resources
+@using Localization
+@using Microsoft.Extensions.Localization
+@inject IHtmlLocalizer<Translations> Localizer
 
+@{
+    ViewData["Title"] = Localizer["Auth.SignIn"];
+}
 
+<link rel="stylesheet" href="~/css/auth-styles.css" asp-append-version="true" />
 
-<section class="vh-100">
-    <div class="container py-5 h-100">
-        <div class="row d-flex align-items-center justify-content-center h-100">
-            <div class="col-md-8 col-lg-7 col-xl-6">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
-                     class="img-fluid" alt="Phone image">
+<div class="login-container">
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="login-header">
+                <h2>@Localizer["Auth.WelcomeBack"]</h2>
+                <p>@Localizer["Auth.SignInToContinue"]</p>
             </div>
-            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                <form class="form" method="post" id="login-form" asp-action="Login">
-                    <!-- Email input -->
-                    <div class="form-outline mb-4">
-                        <label asp-for="UsernameOrEmail" class="form-label">Email address</label>
-                        <input asp-for="UsernameOrEmail" id="form2Example1" class="form-control form-control-lg" required placeholder="email or username">
-                        <span style="color:red" asp-validation-for="UsernameOrEmail"></span>
+            
+            <form class="login-form" method="post" id="login-form" asp-action="Login">
+                @Html.AntiForgeryToken()
+                
+                <div class="form-group">
+                    <label asp-for="UsernameOrEmail" class="form-label">
+                        <i class="fas fa-user"></i> @Localizer["Auth.EmailOrUsername"]
+                    </label>
+                    <input asp-for="UsernameOrEmail" class="form-control" required placeholder="@Localizer["Auth.EnterEmailOrUsername"]" autocomplete="username">
+                    <span class="validation-error" asp-validation-for="UsernameOrEmail"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="Password" class="form-label">
+                        <i class="fas fa-lock"></i> @Localizer["Auth.Password"]
+                    </label>
+                    <div class="password-input-group">
+                        <input asp-for="Password" type="password" class="form-control" required placeholder="@Localizer["Auth.EnterPassword"]" autocomplete="current-password">
+                        <button type="button" class="password-toggle">
+                            <i class="fas fa-eye"></i>
+                        </button>
                     </div>
-
-                    <!-- Password input -->
-                    <div class="form-outline mb-4">
-                        <label asp-for="Password" class="control-label">Password</label>
-                        <input asp-for="Password" class="form-control form-control-lgl" type="password" required placeholder="******">
-                        <span style="color:red" asp-validation-for="Password"></span>
+                    <span class="validation-error" asp-validation-for="Password"></span>
+                </div>
+                
+                <div class="form-options">
+                    <label class="checkbox-container remember-me">
+                        <input asp-for="RememberMe" type="checkbox">
+                        <span class="checkmark"></span>
+                        @Localizer["Auth.RememberMe"]
+                    </label>
+                    <a href="#" class="forgot-password" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">
+                        @Localizer["Auth.ForgotPassword"]
+                    </a>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-login">
+                    <i class="fas fa-sign-in-alt"></i> @Localizer["Auth.SignIn"]
+                </button>
+                
+                <div class="divider">
+                    <span>@Localizer["Auth.Or"]</span>
+                </div>
+                
+                <div class="social-login">
+                    <a class="btn btn-google" asp-action="ExternalLogin" asp-route-provider="Google">
+                        <i class="fab fa-google"></i> @Localizer["Auth.ContinueWithGoogle"]
+                    </a>
+                </div>
+                
+                <div class="register-link">
+                    <p>@Localizer["Auth.DontHaveAccount"] <a asp-action="Register" class="link-primary">@Localizer["Auth.CreateOneNow"]</a></p>
+                </div>
+            </form>
+        </div>
+        
+        <div class="login-illustration">
+            <div class="illustration-content">
+                <h3>@Localizer["Auth.WelcomeToStore"]</h3>
+                <p>@Localizer["Auth.DiscoverAmazingProducts"]</p>
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-shipping-fast"></i>
+                        <span>@Localizer["Auth.FastDelivery"]</span>
                     </div>
-
-                    <div class="d-flex justify-content-around align-items-center mb-4">
-                        <!-- Checkbox -->
-                        <div class="form-check">
-                            <input asp-for="RememberMe" class="form-check-input" type="checkbox" checked>
-                            <label asp-for="RememberMe" class="form-check-label">Remember me</label>
-                        </div>
-                        <!-- Button trigger modal -->
-                        <a href="#" data-toggle="modal" data-target="#exampleModal">
-                            Forgot password?
-                        </a>
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>@Localizer["Auth.SecureShopping"]</span>
                     </div>
-
-                    <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
-                    <p class="small fw-bold mt-2 pt-1 mb-0">
-                        Don't have an account? <a   asp-action="Register"
-                                                  class="link-danger">Register</a>
-                    </p>
-                    <div class="divider d-flex align-items-center my-4">
-                        <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+                    <div class="feature">
+                        <i class="fas fa-headset"></i>
+                        <span>@Localizer["Auth.Support247"]</span>
                     </div>
-                    <div class="text-center">
-                        <a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998" asp-action="ExternalLogin"
-                           role="button">
-                            <i class="fab fa-google"></i>
-                            Continue with Google
-                        </a>
-                    </div>
-
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</section>
-
-<!-- Modal -->
-<div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-     aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
-     <form>
-        <div class="modal-dialog" style="width: 300px;">
-            <div class="modal-content text-center">
-                <div class="modal-header h5 text-white bg-primary justify-content-center">
-                    Password Reset
-                </div>
-                <div class="modal-body px-5">
-                    <p class="py-2">
-                        Enter your email address and we'll send you an email with instructions to reset your password.
-                    </p>
-                    <div class="form-outline">
-                        <label class="form-label" for="typeEmail">Email input</label>
-                        <input type="email" id="typeEmail" required class="form-control my-3" />
-                    </div>
-                    <a id="typeEmailbutton" class="btn btn-primary w-100">Send Email</a>
-                </div>
-            </div>
-        </div>
-
-     </form>
 </div>
 
+<!-- Forgot Password Modal -->
+<div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="forgotPasswordModalLabel">
+                    <i class="fas fa-key"></i> @Localizer["Auth.ResetPassword"]
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>@Localizer["Auth.EnterEmailForReset"]</p>
+                <div class="form-group">
+                    <label for="resetEmail" class="form-label">@Localizer["Auth.EmailAddress"]</label>
+                    <input type="email" id="resetEmail" class="form-control" placeholder="@Localizer["Auth.EnterEmailAddress"]" required>
+                    <span class="validation-error" id="resetEmailError"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@Localizer["Auth.Cancel"]</button>
+                <button type="button" class="btn btn-primary" id="sendResetEmail">@Localizer["Auth.SendResetLink"]</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-
-
-@section Head{
-    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-}
-
-@section Scripts{
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#typeEmailbutton").click(function () {
-            var email = $("#typeEmail").val();
-            var pattern = /^\b[A-Z0-9._%-]+@@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
-
-            if (!pattern.test(email)) {
-                alert('Not a valid e-mail address');
-                return;
-            }
-
-            var requestData = {
-                Email: email
-            };
-
-            $.ajax({
-                url: "/Auth/ForgotPassword/",
-                method: "POST",
-                data: requestData,
-                success: function (res) {
-                    document.location.href = res.url;
-                },
-                error: function (xhr, status, error) {
-                    console.log("Error: " + error);
-                }
-            });
-        });
-    });
-</script>
-
+@section Scripts {
+    <script src="~/js/auth-scripts.js" asp-append-version="true"></script>
 }
 

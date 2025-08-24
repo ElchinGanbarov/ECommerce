@@ -117,16 +117,360 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  
+  <!-- Language Keys -->
   <data name="Languages.Keys.AZ" xml:space="preserve">
-    <value />
+    <value>AZ</value>
   </data>
   <data name="Languages.Keys.EN" xml:space="preserve">
-    <value />
+    <value>EN</value>
   </data>
+  
+  <!-- General -->
   <data name="Text" xml:space="preserve">
-    <value />
+    <value>Text</value>
   </data>
   <data name="Text1" xml:space="preserve">
-    <value />
+    <value>Text1</value>
+  </data>
+  
+  <!-- Authentication -->
+  <data name="Auth.WelcomeBack" xml:space="preserve">
+    <value>Welcome Back</value>
+  </data>
+  <data name="Auth.SignInToContinue" xml:space="preserve">
+    <value>Sign in to your account to continue</value>
+  </data>
+  <data name="Auth.EmailOrUsername" xml:space="preserve">
+    <value>Email or Username</value>
+  </data>
+  <data name="Auth.Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Auth.EnterEmailOrUsername" xml:space="preserve">
+    <value>Enter your email or username</value>
+  </data>
+  <data name="Auth.EnterPassword" xml:space="preserve">
+    <value>Enter your password</value>
+  </data>
+  <data name="Auth.RememberMe" xml:space="preserve">
+    <value>Remember me</value>
+  </data>
+  <data name="Auth.ForgotPassword" xml:space="preserve">
+    <value>Forgot password?</value>
+  </data>
+  <data name="Auth.SignIn" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="Auth.Or" xml:space="preserve">
+    <value>OR</value>
+  </data>
+  <data name="Auth.ContinueWithGoogle" xml:space="preserve">
+    <value>Continue with Google</value>
+  </data>
+  <data name="Auth.DontHaveAccount" xml:space="preserve">
+    <value>Don't have an account?</value>
+  </data>
+  <data name="Auth.CreateOneNow" xml:space="preserve">
+    <value>Create one now</value>
+  </data>
+  <data name="Auth.WelcomeToStore" xml:space="preserve">
+    <value>Welcome to Our Store</value>
+  </data>
+  <data name="Auth.DiscoverAmazingProducts" xml:space="preserve">
+    <value>Discover amazing products and exclusive deals</value>
+  </data>
+  <data name="Auth.FastDelivery" xml:space="preserve">
+    <value>Fast Delivery</value>
+  </data>
+  <data name="Auth.SecureShopping" xml:space="preserve">
+    <value>Secure Shopping</value>
+  </data>
+  <data name="Auth.Support247" xml:space="preserve">
+    <value>24/7 Support</value>
+  </data>
+  
+  <!-- Registration -->
+  <data name="Auth.CreateAccount" xml:space="preserve">
+    <value>Create Account</value>
+  </data>
+  <data name="Auth.JoinUsAndStartShopping" xml:space="preserve">
+    <value>Join us and start shopping today</value>
+  </data>
+  <data name="Auth.FullName" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="Auth.EmailAddress" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="Auth.EnterFullName" xml:space="preserve">
+    <value>Enter your full name</value>
+  </data>
+  <data name="Auth.EnterEmailAddress" xml:space="preserve">
+    <value>Enter your email address</value>
+  </data>
+  <data name="Auth.CreateStrongPassword" xml:space="preserve">
+    <value>Create a strong password</value>
+  </data>
+  <data name="Auth.ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="Auth.ConfirmYourPassword" xml:space="preserve">
+    <value>Confirm your password</value>
+  </data>
+  <data name="Auth.AgreeToTerms" xml:space="preserve">
+    <value>I agree to the Terms of Service and Privacy Policy</value>
+  </data>
+  <data name="Auth.TermsOfService" xml:space="preserve">
+    <value>Terms of Service</value>
+  </data>
+  <data name="Auth.PrivacyPolicy" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="Auth.CreateAccountButton" xml:space="preserve">
+    <value>Create Account</value>
+  </data>
+  <data name="Auth.SignUpWithGoogle" xml:space="preserve">
+    <value>Sign up with Google</value>
+  </data>
+  <data name="Auth.AlreadyHaveAccount" xml:space="preserve">
+    <value>Already have an account?</value>
+  </data>
+  <data name="Auth.SignInHere" xml:space="preserve">
+    <value>Sign in here</value>
+  </data>
+  <data name="Auth.JoinOurCommunity" xml:space="preserve">
+    <value>Join Our Community</value>
+  </data>
+  <data name="Auth.GetAccessToExclusiveDeals" xml:space="preserve">
+    <value>Get access to exclusive deals and personalized recommendations</value>
+  </data>
+  <data name="Auth.ExclusiveDeals" xml:space="preserve">
+    <value>Exclusive Deals</value>
+  </data>
+  <data name="Auth.GetAccessToMemberOnlyDiscounts" xml:space="preserve">
+    <value>Get access to member-only discounts</value>
+  </data>
+  <data name="Auth.Wishlist" xml:space="preserve">
+    <value>Wishlist</value>
+  </data>
+  <data name="Auth.SaveYourFavoriteItems" xml:space="preserve">
+    <value>Save your favorite items for later</value>
+  </data>
+  <data name="Auth.FastShipping" xml:space="preserve">
+    <value>Fast Shipping</value>
+  </data>
+  <data name="Auth.FreeShippingOnOrdersOver50" xml:space="preserve">
+    <value>Free shipping on orders over $50</value>
+  </data>
+  
+  <!-- Password Reset -->
+  <data name="Auth.ResetPassword" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
+  <data name="Auth.EnterEmailForReset" xml:space="preserve">
+    <value>Enter your email address and we'll send you a link to reset your password.</value>
+  </data>
+  <data name="Auth.SendResetLink" xml:space="preserve">
+    <value>Send Reset Link</value>
+  </data>
+  <data name="Auth.Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  
+  <!-- Home Page -->
+  <data name="Home.DiscoverAmazingProducts" xml:space="preserve">
+    <value>Discover Amazing Products</value>
+  </data>
+  <data name="Home.ShopLatestTrends" xml:space="preserve">
+    <value>Shop the latest trends and find exclusive deals on premium items</value>
+  </data>
+  <data name="Home.ShopNow" xml:space="preserve">
+    <value>Shop Now</value>
+  </data>
+  <data name="Home.ViewProducts" xml:space="preserve">
+    <value>View Products</value>
+  </data>
+  <data name="Home.FreeShippingOnOrdersOver50" xml:space="preserve">
+    <value>Free shipping on orders over $50</value>
+  </data>
+  <data name="Home.SecurePaymentProcessing" xml:space="preserve">
+    <value>100% secure payment processing</value>
+  </data>
+  <data name="Home.DayReturnPolicy" xml:space="preserve">
+    <value>30-day return policy</value>
+  </data>
+  <data name="Home.RoundTheClockCustomerService" xml:space="preserve">
+    <value>Round the clock customer service</value>
+  </data>
+  <data name="Home.ShopByCategories" xml:space="preserve">
+    <value>Shop By Categories</value>
+  </data>
+  <data name="Home.ExploreWideRange" xml:space="preserve">
+    <value>Explore our wide range of product categories</value>
+  </data>
+  <data name="Home.WallArt" xml:space="preserve">
+    <value>Wall Art</value>
+  </data>
+  <data name="Home.BeautifulWallDecorations" xml:space="preserve">
+    <value>Beautiful wall decorations</value>
+  </data>
+  <data name="Home.Posters" xml:space="preserve">
+    <value>Posters</value>
+  </data>
+  <data name="Home.HighQualityPosterPrints" xml:space="preserve">
+    <value>High-quality poster prints</value>
+  </data>
+  <data name="Home.ThankYouCards" xml:space="preserve">
+    <value>Thank You Cards</value>
+  </data>
+  <data name="Home.PersonalizedGreetingCards" xml:space="preserve">
+    <value>Personalized greeting cards</value>
+  </data>
+  <data name="Home.GiftCards" xml:space="preserve">
+    <value>Gift Cards</value>
+  </data>
+  <data name="Home.PerfectGiftForAnyOccasion" xml:space="preserve">
+    <value>Perfect gift for any occasion</value>
+  </data>
+  <data name="Home.LatestProducts" xml:space="preserve">
+    <value>Latest Products</value>
+  </data>
+  <data name="Home.DiscoverOurNewestArrivals" xml:space="preserve">
+    <value>Discover our newest arrivals</value>
+  </data>
+  <data name="Home.SaleProducts" xml:space="preserve">
+    <value>Sale Products</value>
+  </data>
+  <data name="Home.LimitedTimeOffers" xml:space="preserve">
+    <value>Limited time offers - Don't miss out!</value>
+  </data>
+  <data name="Home.StayUpdated" xml:space="preserve">
+    <value>Stay Updated</value>
+  </data>
+  <data name="Home.SubscribeToNewsletter" xml:space="preserve">
+    <value>Subscribe to our newsletter for exclusive deals and updates</value>
+  </data>
+  <data name="Home.EnterEmailAddress" xml:space="preserve">
+    <value>Enter your email address</value>
+  </data>
+  <data name="Home.Subscribe" xml:space="preserve">
+    <value>Subscribe</value>
+  </data>
+  
+  <!-- Success Messages -->
+  <data name="Success.ItemAddedToBasket" xml:space="preserve">
+    <value>Item added to basket successfully!</value>
+  </data>
+  <data name="Success.ProductDownloaded" xml:space="preserve">
+    <value>Product downloaded successfully!</value>
+  </data>
+  <data name="Success.ItemAddedToWishlist" xml:space="preserve">
+    <value>Item added to wishlist successfully!</value>
+  </data>
+  <data name="Success.ThankYouForSubscribing" xml:space="preserve">
+    <value>Thank you for subscribing! You'll receive updates soon.</value>
+  </data>
+  <data name="Success.PasswordResetSent" xml:space="preserve">
+    <value>Password reset link has been sent to your email</value>
+  </data>
+  <data name="Success.RegistrationSuccessful" xml:space="preserve">
+    <value>Registration successful! You can now log in.</value>
+  </data>
+  <data name="Success.PasswordUpdated" xml:space="preserve">
+    <value>Password updated successfully! You can now log in with your new password.</value>
+  </data>
+  <data name="Success.LoggedOut" xml:space="preserve">
+    <value>Successfully logged out!</value>
+  </data>
+  <data name="Success.GoogleLoginSuccessful" xml:space="preserve">
+    <value>Successfully logged in with Google!</value>
+  </data>
+  
+  <!-- Error Messages -->
+  <data name="Error.ValidationFailed" xml:space="preserve">
+    <value>Validation failed</value>
+  </data>
+  <data name="Error.PleaseCorrectErrors" xml:space="preserve">
+    <value>Please correct the errors in the form</value>
+  </data>
+  <data name="Error.InvalidEmail" xml:space="preserve">
+    <value>Please enter a valid email address</value>
+  </data>
+  <data name="Error.PasswordsDoNotMatch" xml:space="preserve">
+    <value>Passwords do not match</value>
+  </data>
+  <data name="Error.AgreeToTerms" xml:space="preserve">
+    <value>You must agree to the terms and conditions</value>
+  </data>
+  <data name="Error.FieldRequired" xml:space="preserve">
+    <value>This field is required</value>
+  </data>
+  <data name="Error.PasswordTooShort" xml:space="preserve">
+    <value>Password must be at least 6 characters long</value>
+  </data>
+  <data name="Error.NameTooShort" xml:space="preserve">
+    <value>Name must be at least 2 characters long</value>
+  </data>
+  <data name="Error.FailedToSendResetEmail" xml:space="preserve">
+    <value>Failed to send reset email</value>
+  </data>
+  <data name="Error.AnErrorOccurred" xml:space="preserve">
+    <value>An error occurred while processing your request.</value>
+  </data>
+  <data name="Error.GoogleLoginFailed" xml:space="preserve">
+    <value>Google login failed. Please try again.</value>
+  </data>
+  <data name="Error.SecurityValidationFailed" xml:space="preserve">
+    <value>Security validation failed. Please try again.</value>
+  </data>
+  <data name="Error.FailedToCompleteGoogleLogin" xml:space="preserve">
+    <value>Failed to complete Google login.</value>
+  </data>
+  <data name="Error.UserNotFound" xml:space="preserve">
+    <value>User not found</value>
+  </data>
+  <data name="Error.FailedToUpdatePassword" xml:space="preserve">
+    <value>Failed to update password.</value>
+  </data>
+  <data name="Error.InvalidResetToken" xml:space="preserve">
+    <value>Invalid reset token.</value>
+  </data>
+  
+  <!-- Password Strength -->
+  <data name="Password.WeakPassword" xml:space="preserve">
+    <value>Weak password</value>
+  </data>
+  <data name="Password.MediumStrength" xml:space="preserve">
+    <value>Medium strength</value>
+  </data>
+  <data name="Password.StrongPassword" xml:space="preserve">
+    <value>Strong password</value>
+  </data>
+  <data name="Password.PasswordStrength" xml:space="preserve">
+    <value>Password strength</value>
+  </data>
+  
+  <!-- Navigation -->
+  <data name="Nav.Search" xml:space="preserve">
+    <value>Search...</value>
+  </data>
+  <data name="Nav.Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Nav.Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Nav.OrderHistory" xml:space="preserve">
+    <value>Order History</value>
+  </data>
+  <data name="Nav.AdminPanel" xml:space="preserve">
+    <value>Admin Panel</value>
+  </data>
+  <data name="Nav.SignOut" xml:space="preserve">
+    <value>Sign out</value>
+  </data>
+  <data name="Nav.AllProducts" xml:space="preserve">
+    <value>All Products</value>
   </data>
 </root>

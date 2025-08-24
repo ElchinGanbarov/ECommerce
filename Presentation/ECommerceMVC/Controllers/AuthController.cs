@@ -1,10 +1,12 @@
-﻿namespace ECommerceMVC.Controllers
+﻿using ECommerceMVC.Controllers.Base;
+
+namespace ECommerceMVC.Controllers
 {
-    public class AuthController : Controller
+    public class AuthController : BaseController
     {
         readonly IMediator _mediator;
 
-        public AuthController(IMediator mediator)
+        public AuthController(IMediator mediator , ILogger<AuthController> logger) :base(logger)
         {
             _mediator = mediator;
         }

@@ -1,94 +1,213 @@
-﻿@using Localization
-@using Microsoft.AspNetCore.Mvc.Localization
- @inject IViewLocalizer localizer
-<!--Body-->
-<div id="body" class="mb-5">
-    <!--Popular Categories-->
-    <section class="about-cards-section">
-        <h2 class="text-center my-3">Shop By Categories</h2>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-3 card-wrapper">
-                    <div class="card border-0">
-                        <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
-                            <img class="w-100 h-100" src="imgs/img1.jpg" alt="Card image cap">
-                        </div>
-                        <div class="card-body text-center mt-4">
-                            <h5 class="text-uppercase card-title">Wall Art</h5>
-                        </div>
-                    </div>
-                </div>
+﻿@using ECommerceMVC.Resources
+@using Microsoft.Extensions.Localization
+@model HomeViewModel
+@inject IStringLocalizer<SharedResource> Localizer
 
-                <div class="col-sm-3 card-wrapper">
-                    <div class="card border-0">
-                        <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
-                            <img class="w-100 h-100" src="imgs/img1.jpg" alt="Card image cap">
-                        </div>
-                        <div class="card-body text-center mt-4">
-                            <h5 class="text-uppercase card-title">Posters</h5>
-                        </div>
-                    </div>
-                </div>
+@{
+    ViewData["Title"] = "Home";
+}
 
-                <div class="col-sm-3 card-wrapper">
-                    <div class="card border-0">
-                        <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
-                            <img class="w-100 h-100" src="imgs/img1.jpg" alt="Card image cap">
-                        </div>
-                        <div class="card-body text-center mt-4">
-                            <h5 class="text-uppercase card-title">Thank You Cards</h5>
-                        </div>
-                    </div>
-                </div>
+<link rel="stylesheet" href="~/css/home-styles.css" asp-append-version="true" />
 
-                <div class="col-sm-3 card-wrapper">
-                    <div class="card border-0">
-                        <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
-                            <img class="w-100 h-100" src="imgs/img1.jpg" alt="Card image cap">
-                        </div>
-                        <div class="card-body text-center mt-4">
-                            <h5 class="text-uppercase card-title">Gift Cards</h5>
-                        </div>
-                    </div>
-                </div>
-
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-background">
+        <div class="hero-overlay"></div>
+    </div>
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">@Localizer["Home.DiscoverAmazingProducts"]</h1>
+            <p class="hero-subtitle">@Localizer["Home.ShopLatestTrends"]</p>
+            <div class="hero-buttons">
+                <a href="#categories" class="btn btn-primary btn-lg">@Localizer["Home.ShopNow"]</a>
+                <a href="#products" class="btn btn-outline-light btn-lg">@Localizer["Home.ViewProducts"]</a>
             </div>
         </div>
-    </section>
-
-@*<partial name="~/Views/Shared/Form/_Tariff.cshtml" model="list"/> *@
-
-
-    <vc:product-component title="Latest products"></vc:product-component>
-
-
-    <vc:product-component title="Sale products"></vc:product-component>
-
-    <!--Basket success dialog-->
-    <div id="dialog-basket" title="SUCCESS">
-        <p>
-            <i class="fa-solid fa-check" style="color: #2c511f;"></i>
-            Item added to basket!
-        </p>
     </div>
+</section>
 
-    <!--Product downloaded successfully dialog-->
-    <div id="downloaded-dialog" title="SUCCESS">
-        <p>
-            <i class="fa-solid fa-check" style="color: #2c511f;"></i>
-            Product downloaded successfully
-        </p>
+<!-- Features Section -->
+<section class="features-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h4>@Localizer["Auth.FastDelivery"]</h4>
+                    <p>@Localizer["Home.FreeShippingOnOrdersOver50"]</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>@Localizer["Auth.SecureShopping"]</h4>
+                    <p>@Localizer["Home.SecurePaymentProcessing"]</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-undo"></i>
+                    </div>
+                    <h4>@Localizer["Home.DayReturnPolicy"]</h4>
+                    <p>@Localizer["Home.DayReturnPolicy"]</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4>@Localizer["Auth.Support247"]</h4>
+                    <p>@Localizer["Home.RoundTheClockCustomerService"]</p>
+                </div>
+            </div>
+        </div>
     </div>
+</section>
 
-    <!--Basket success dialog-->
-    <div id="dialog-wishlist" title="SUCCESS">
-        <p>
-            <i class="fa-solid fa-check" style="color: #2c511f;"></i>
-            Item added to wishlist!
-        </p>
+<!-- Categories Section -->
+<section class="categories-section" id="categories">
+    <div class="container">
+        <div class="section-header">
+            <h2>@Localizer["Home.ShopByCategories"]</h2>
+            <p>@Localizer["Home.ExploreWideRange"]</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="~/imgs/img1.jpg" alt="@Localizer["Home.WallArt"]" class="lazy">
+                        <div class="category-overlay">
+                            <a href="#" class="btn btn-light">@Localizer["Home.ShopNow"]</a>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <h4>@Localizer["Home.WallArt"]</h4>
+                        <p>@Localizer["Home.BeautifulWallDecorations"]</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="~/imgs/img2.jpg" alt="@Localizer["Home.Posters"]" class="lazy">
+                        <div class="category-overlay">
+                            <a href="#" class="btn btn-light">@Localizer["Home.ShopNow"]</a>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <h4>@Localizer["Home.Posters"]</h4>
+                        <p>@Localizer["Home.HighQualityPosterPrints"]</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="~/imgs/img3.jpg" alt="@Localizer["Home.ThankYouCards"]" class="lazy">
+                        <div class="category-overlay">
+                            <a href="#" class="btn btn-light">@Localizer["Home.ShopNow"]</a>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <h4>@Localizer["Home.ThankYouCards"]</h4>
+                        <p>@Localizer["Home.PersonalizedGreetingCards"]</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="~/imgs/img4.jpg" alt="@Localizer["Home.GiftCards"]" class="lazy">
+                        <div class="category-overlay">
+                            <a href="#" class="btn btn-light">@Localizer["Home.ShopNow"]</a>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <h4>@Localizer["Home.GiftCards"]</h4>
+                        <p>@Localizer["Home.PerfectGiftForAnyOccasion"]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    @localizer["Text"]
-    @localizer["Elchin"]
+</section>
 
-    <a asp-controller="Products" asp-action="GetAllProduct" asp-route-lang="@ViewContext.RouteData.Values["lang"]">AllProducts</a>
+<!-- Products Section -->
+<section class="products-section" id="products">
+    <div class="container">
+        <div class="section-header">
+            <h2>@Localizer["Home.LatestProducts"]</h2>
+            <p>@Localizer["Home.DiscoverOurNewestArrivals"]</p>
+        </div>
+        <div class="row">
+            @await Component.InvokeAsync("ProductComponent")
+        </div>
+    </div>
+</section>
+
+<!-- Sale Section -->
+<section class="sale-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>@Localizer["Home.SaleProducts"]</h2>
+            <p>@Localizer["Home.LimitedTimeOffers"]</p>
+        </div>
+        <div class="row">
+            @await Component.InvokeAsync("ProductComponent")
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="newsletter-content">
+                    <h3>@Localizer["Home.StayUpdated"]</h3>
+                    <p>@Localizer["Home.SubscribeToNewsletter"]</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <form class="newsletter-form">
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="@Localizer["Home.EnterEmailAddress"]" required>
+                        <button class="btn btn-primary" type="submit">@Localizer["Home.Subscribe"]</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Success Dialogs -->
+<div class="success-dialog" id="dialog-basket">
+    <div class="dialog-content">
+        <i class="fas fa-check-circle"></i>
+        <p>@Localizer["Success.ItemAddedToBasket"]</p>
+    </div>
 </div>
+
+<div class="success-dialog" id="downloaded-dialog">
+    <div class="dialog-content">
+        <i class="fas fa-download"></i>
+        <p>@Localizer["Success.ProductDownloaded"]</p>
+    </div>
+</div>
+
+<div class="success-dialog" id="dialog-wishlist">
+    <div class="dialog-content">
+        <i class="fas fa-heart"></i>
+        <p>@Localizer["Success.ItemAddedToWishlist"]</p>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/home-scripts.js" asp-append-version="true"></script>
+}

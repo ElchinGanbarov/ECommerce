@@ -117,16 +117,360 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  
+  <!-- Language Keys -->
   <data name="Languages.Keys.AZ" xml:space="preserve">
     <value>AZ</value>
   </data>
   <data name="Languages.Keys.EN" xml:space="preserve">
     <value>EN</value>
   </data>
+  
+  <!-- General -->
   <data name="Text" xml:space="preserve">
-    <value>Azerbaycan</value>
+    <value>Mətn</value>
   </data>
   <data name="Text1" xml:space="preserve">
     <value>Salam ay can</value>
+  </data>
+  
+  <!-- Authentication -->
+  <data name="Auth.WelcomeBack" xml:space="preserve">
+    <value>Xoş gəlmisiniz</value>
+  </data>
+  <data name="Auth.SignInToContinue" xml:space="preserve">
+    <value>Hesabınıza daxil olmaq üçün giriş edin</value>
+  </data>
+  <data name="Auth.EmailOrUsername" xml:space="preserve">
+    <value>Email və ya İstifadəçi adı</value>
+  </data>
+  <data name="Auth.Password" xml:space="preserve">
+    <value>Şifrə</value>
+  </data>
+  <data name="Auth.EnterEmailOrUsername" xml:space="preserve">
+    <value>Email və ya istifadəçi adınızı daxil edin</value>
+  </data>
+  <data name="Auth.EnterPassword" xml:space="preserve">
+    <value>Şifrənizi daxil edin</value>
+  </data>
+  <data name="Auth.RememberMe" xml:space="preserve">
+    <value>Məni xatırla</value>
+  </data>
+  <data name="Auth.ForgotPassword" xml:space="preserve">
+    <value>Şifrəni unutmusunuz?</value>
+  </data>
+  <data name="Auth.SignIn" xml:space="preserve">
+    <value>Giriş Et</value>
+  </data>
+  <data name="Auth.Or" xml:space="preserve">
+    <value>VƏ YA</value>
+  </data>
+  <data name="Auth.ContinueWithGoogle" xml:space="preserve">
+    <value>Google ilə davam et</value>
+  </data>
+  <data name="Auth.DontHaveAccount" xml:space="preserve">
+    <value>Hesabınız yoxdur?</value>
+  </data>
+  <data name="Auth.CreateOneNow" xml:space="preserve">
+    <value>İndi yaradın</value>
+  </data>
+  <data name="Auth.WelcomeToStore" xml:space="preserve">
+    <value>Mağazamıza Xoş Gəlmisiniz</value>
+  </data>
+  <data name="Auth.DiscoverAmazingProducts" xml:space="preserve">
+    <value>Əla məhsulları və eksklüziv təklifləri kəşf edin</value>
+  </data>
+  <data name="Auth.FastDelivery" xml:space="preserve">
+    <value>Sürətli Çatdırılma</value>
+  </data>
+  <data name="Auth.SecureShopping" xml:space="preserve">
+    <value>Təhlükəsiz Alış-veriş</value>
+  </data>
+  <data name="Auth.Support247" xml:space="preserve">
+    <value>24/7 Dəstək</value>
+  </data>
+  
+  <!-- Registration -->
+  <data name="Auth.CreateAccount" xml:space="preserve">
+    <value>Hesab Yarat</value>
+  </data>
+  <data name="Auth.JoinUsAndStartShopping" xml:space="preserve">
+    <value>Bizə qoşulun və bugün alış-verişə başlayın</value>
+  </data>
+  <data name="Auth.FullName" xml:space="preserve">
+    <value>Ad Soyad</value>
+  </data>
+  <data name="Auth.EmailAddress" xml:space="preserve">
+    <value>Email Ünvanı</value>
+  </data>
+  <data name="Auth.EnterFullName" xml:space="preserve">
+    <value>Ad və soyadınızı daxil edin</value>
+  </data>
+  <data name="Auth.EnterEmailAddress" xml:space="preserve">
+    <value>Email ünvanınızı daxil edin</value>
+  </data>
+  <data name="Auth.CreateStrongPassword" xml:space="preserve">
+    <value>Güclü şifrə yaradın</value>
+  </data>
+  <data name="Auth.ConfirmPassword" xml:space="preserve">
+    <value>Şifrəni Təsdiqlə</value>
+  </data>
+  <data name="Auth.ConfirmYourPassword" xml:space="preserve">
+    <value>Şifrənizi təsdiqləyin</value>
+  </data>
+  <data name="Auth.AgreeToTerms" xml:space="preserve">
+    <value>İstifadə Şərtləri və Gizlilik Siyasətini qəbul edirəm</value>
+  </data>
+  <data name="Auth.TermsOfService" xml:space="preserve">
+    <value>İstifadə Şərtləri</value>
+  </data>
+  <data name="Auth.PrivacyPolicy" xml:space="preserve">
+    <value>Gizlilik Siyasəti</value>
+  </data>
+  <data name="Auth.CreateAccountButton" xml:space="preserve">
+    <value>Hesab Yarat</value>
+  </data>
+  <data name="Auth.SignUpWithGoogle" xml:space="preserve">
+    <value>Google ilə qeydiyyatdan keç</value>
+  </data>
+  <data name="Auth.AlreadyHaveAccount" xml:space="preserve">
+    <value>Artıq hesabınız var?</value>
+  </data>
+  <data name="Auth.SignInHere" xml:space="preserve">
+    <value>Burada giriş edin</value>
+  </data>
+  <data name="Auth.JoinOurCommunity" xml:space="preserve">
+    <value>İcmanıza Qoşulun</value>
+  </data>
+  <data name="Auth.GetAccessToExclusiveDeals" xml:space="preserve">
+    <value>Eksklüziv təkliflərə və fərdi tövsiyələrə giriş əldə edin</value>
+  </data>
+  <data name="Auth.ExclusiveDeals" xml:space="preserve">
+    <value>Eksklüziv Təkliflər</value>
+  </data>
+  <data name="Auth.GetAccessToMemberOnlyDiscounts" xml:space="preserve">
+    <value>Yalnız üzvlər üçün endirimlərə giriş əldə edin</value>
+  </data>
+  <data name="Auth.Wishlist" xml:space="preserve">
+    <value>İstək Siyahısı</value>
+  </data>
+  <data name="Auth.SaveYourFavoriteItems" xml:space="preserve">
+    <value>Sevimli əşyalarınızı sonra üçün saxlayın</value>
+  </data>
+  <data name="Auth.FastShipping" xml:space="preserve">
+    <value>Sürətli Çatdırılma</value>
+  </data>
+  <data name="Auth.FreeShippingOnOrdersOver50" xml:space="preserve">
+    <value>$50-dən çox sifarişlərə pulsuz çatdırılma</value>
+  </data>
+  
+  <!-- Password Reset -->
+  <data name="Auth.ResetPassword" xml:space="preserve">
+    <value>Şifrəni Sıfırla</value>
+  </data>
+  <data name="Auth.EnterEmailForReset" xml:space="preserve">
+    <value>Email ünvanınızı daxil edin və şifrənizi sıfırlamaq üçün link göndərəcəyik.</value>
+  </data>
+  <data name="Auth.SendResetLink" xml:space="preserve">
+    <value>Sıfırlama Linkini Göndər</value>
+  </data>
+  <data name="Auth.Cancel" xml:space="preserve">
+    <value>Ləğv Et</value>
+  </data>
+  
+  <!-- Home Page -->
+  <data name="Home.DiscoverAmazingProducts" xml:space="preserve">
+    <value>Əla Məhsulları Kəşf Edin</value>
+  </data>
+  <data name="Home.ShopLatestTrends" xml:space="preserve">
+    <value>Ən son trendləri alın və premium məhsullarda eksklüziv təkliflər tapın</value>
+  </data>
+  <data name="Home.ShopNow" xml:space="preserve">
+    <value>İndi Al</value>
+  </data>
+  <data name="Home.ViewProducts" xml:space="preserve">
+    <value>Məhsulları Gör</value>
+  </data>
+  <data name="Home.FreeShippingOnOrdersOver50" xml:space="preserve">
+    <value>$50-dən çox sifarişlərə pulsuz çatdırılma</value>
+  </data>
+  <data name="Home.SecurePaymentProcessing" xml:space="preserve">
+    <value>100% təhlükəsiz ödəniş emalı</value>
+  </data>
+  <data name="Home.DayReturnPolicy" xml:space="preserve">
+    <value>30 günlük qaytarma siyasəti</value>
+  </data>
+  <data name="Home.RoundTheClockCustomerService" xml:space="preserve">
+    <value>Gecə-gündüz müştəri xidməti</value>
+  </data>
+  <data name="Home.ShopByCategories" xml:space="preserve">
+    <value>Kateqoriyalara Görə Alış-veriş</value>
+  </data>
+  <data name="Home.ExploreWideRange" xml:space="preserve">
+    <value>Məhsul kateqoriyalarımızın geniş çeşidini kəşf edin</value>
+  </data>
+  <data name="Home.WallArt" xml:space="preserve">
+    <value>Divar Sənəti</value>
+  </data>
+  <data name="Home.BeautifulWallDecorations" xml:space="preserve">
+    <value>Gözəl divar bəzəkləri</value>
+  </data>
+  <data name="Home.Posters" xml:space="preserve">
+    <value>Posterlər</value>
+  </data>
+  <data name="Home.HighQualityPosterPrints" xml:space="preserve">
+    <value>Yüksək keyfiyyətli poster çapı</value>
+  </data>
+  <data name="Home.ThankYouCards" xml:space="preserve">
+    <value>Təşəkkür Kartları</value>
+  </data>
+  <data name="Home.PersonalizedGreetingCards" xml:space="preserve">
+    <value>Fərdiləşdirilmiş təbrik kartları</value>
+  </data>
+  <data name="Home.GiftCards" xml:space="preserve">
+    <value>Hədiyyə Kartları</value>
+  </data>
+  <data name="Home.PerfectGiftForAnyOccasion" xml:space="preserve">
+    <value>İstənilən tədbir üçün mükəmməl hədiyyə</value>
+  </data>
+  <data name="Home.LatestProducts" xml:space="preserve">
+    <value>Ən Son Məhsullar</value>
+  </data>
+  <data name="Home.DiscoverOurNewestArrivals" xml:space="preserve">
+    <value>Ən yeni gələnlərimizi kəşf edin</value>
+  </data>
+  <data name="Home.SaleProducts" xml:space="preserve">
+    <value>Endirimli Məhsullar</value>
+  </data>
+  <data name="Home.LimitedTimeOffers" xml:space="preserve">
+    <value>Məhdud vaxt təklifləri - Qaçırmayın!</value>
+  </data>
+  <data name="Home.StayUpdated" xml:space="preserve">
+    <value>Güncəldə Qalın</value>
+  </data>
+  <data name="Home.SubscribeToNewsletter" xml:space="preserve">
+    <value>Eksklüziv təkliflər və yeniliklər üçün bülletenimizə abunə olun</value>
+  </data>
+  <data name="Home.EnterEmailAddress" xml:space="preserve">
+    <value>Email ünvanınızı daxil edin</value>
+  </data>
+  <data name="Home.Subscribe" xml:space="preserve">
+    <value>Abunə Ol</value>
+  </data>
+  
+  <!-- Success Messages -->
+  <data name="Success.ItemAddedToBasket" xml:space="preserve">
+    <value>Məhsul səbətə uğurla əlavə edildi!</value>
+  </data>
+  <data name="Success.ProductDownloaded" xml:space="preserve">
+    <value>Məhsul uğurla yükləndi!</value>
+  </data>
+  <data name="Success.ItemAddedToWishlist" xml:space="preserve">
+    <value>Məhsul istək siyahısına uğurla əlavə edildi!</value>
+  </data>
+  <data name="Success.ThankYouForSubscribing" xml:space="preserve">
+    <value>Abunə olduğunuz üçün təşəkkür edirik! Tezliklə yeniliklər alacaqsınız.</value>
+  </data>
+  <data name="Success.PasswordResetSent" xml:space="preserve">
+    <value>Şifrə sıfırlama linki emailinizə göndərildi</value>
+  </data>
+  <data name="Success.RegistrationSuccessful" xml:space="preserve">
+    <value>Qeydiyyat uğurlu oldu! İndi giriş edə bilərsiniz.</value>
+  </data>
+  <data name="Success.PasswordUpdated" xml:space="preserve">
+    <value>Şifrə uğurla yeniləndi! İndi yeni şifrənizlə giriş edə bilərsiniz.</value>
+  </data>
+  <data name="Success.LoggedOut" xml:space="preserve">
+    <value>Uğurla çıxış edildi!</value>
+  </data>
+  <data name="Success.GoogleLoginSuccessful" xml:space="preserve">
+    <value>Google ilə uğurla giriş edildi!</value>
+  </data>
+  
+  <!-- Error Messages -->
+  <data name="Error.ValidationFailed" xml:space="preserve">
+    <value>Doğrulama uğursuz oldu</value>
+  </data>
+  <data name="Error.PleaseCorrectErrors" xml:space="preserve">
+    <value>Zəhmət olmasa formadakı xətaları düzəldin</value>
+  </data>
+  <data name="Error.InvalidEmail" xml:space="preserve">
+    <value>Zəhmət olmasa düzgün email ünvanı daxil edin</value>
+  </data>
+  <data name="Error.PasswordsDoNotMatch" xml:space="preserve">
+    <value>Şifrələr uyğun gəlmir</value>
+  </data>
+  <data name="Error.AgreeToTerms" xml:space="preserve">
+    <value>Şərtləri və şərtləri qəbul etməlisiniz</value>
+  </data>
+  <data name="Error.FieldRequired" xml:space="preserve">
+    <value>Bu sahə tələb olunur</value>
+  </data>
+  <data name="Error.PasswordTooShort" xml:space="preserve">
+    <value>Şifrə ən azı 6 simvol olmalıdır</value>
+  </data>
+  <data name="Error.NameTooShort" xml:space="preserve">
+    <value>Ad ən azı 2 simvol olmalıdır</value>
+  </data>
+  <data name="Error.FailedToSendResetEmail" xml:space="preserve">
+    <value>Sıfırlama emaili göndərilmədi</value>
+  </data>
+  <data name="Error.AnErrorOccurred" xml:space="preserve">
+    <value>Sorğunuzu emal edərkən xəta baş verdi.</value>
+  </data>
+  <data name="Error.GoogleLoginFailed" xml:space="preserve">
+    <value>Google girişi uğursuz oldu. Zəhmət olmasa yenidən cəhd edin.</value>
+  </data>
+  <data name="Error.SecurityValidationFailed" xml:space="preserve">
+    <value>Təhlükəsizlik doğrulaması uğursuz oldu. Zəhmət olmasa yenidən cəhd edin.</value>
+  </data>
+  <data name="Error.FailedToCompleteGoogleLogin" xml:space="preserve">
+    <value>Google girişini tamamlamaq uğursuz oldu.</value>
+  </data>
+  <data name="Error.UserNotFound" xml:space="preserve">
+    <value>İstifadəçi tapılmadı</value>
+  </data>
+  <data name="Error.FailedToUpdatePassword" xml:space="preserve">
+    <value>Şifrəni yeniləmək uğursuz oldu.</value>
+  </data>
+  <data name="Error.InvalidResetToken" xml:space="preserve">
+    <value>Yanlış sıfırlama tokeni.</value>
+  </data>
+  
+  <!-- Password Strength -->
+  <data name="Password.WeakPassword" xml:space="preserve">
+    <value>Zəif şifrə</value>
+  </data>
+  <data name="Password.MediumStrength" xml:space="preserve">
+    <value>Orta güc</value>
+  </data>
+  <data name="Password.StrongPassword" xml:space="preserve">
+    <value>Güclü şifrə</value>
+  </data>
+  <data name="Password.PasswordStrength" xml:space="preserve">
+    <value>Şifrə gücü</value>
+  </data>
+  
+  <!-- Navigation -->
+  <data name="Nav.Search" xml:space="preserve">
+    <value>Axtar...</value>
+  </data>
+  <data name="Nav.Login" xml:space="preserve">
+    <value>Giriş</value>
+  </data>
+  <data name="Nav.Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="Nav.OrderHistory" xml:space="preserve">
+    <value>Sifariş Tarixçəsi</value>
+  </data>
+  <data name="Nav.AdminPanel" xml:space="preserve">
+    <value>Admin Paneli</value>
+  </data>
+  <data name="Nav.SignOut" xml:space="preserve">
+    <value>Çıxış et</value>
+  </data>
+  <data name="Nav.AllProducts" xml:space="preserve">
+    <value>Bütün Məhsullar</value>
   </data>
 </root>

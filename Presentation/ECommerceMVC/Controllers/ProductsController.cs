@@ -8,12 +8,10 @@ using System.Globalization;
 
 namespace ECommerceMVC.Controllers
 {
-    [Authorize]
     public class ProductsController : BaseController
     {
 
         readonly IMediator _mediator;
-        readonly ILogger<ProductsController> _logger;
 
         public ProductsController(IMediator mediator,
                                  ILogger<ProductsController> logger ) : base(logger)
